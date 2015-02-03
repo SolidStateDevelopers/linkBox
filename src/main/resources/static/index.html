@@ -1,13 +1,30 @@
-<html>
-	<!-- This page will be shown when you git the root URL -->
-	<head>
-	    <title>CS480 Demo HomePage</title>
-	    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	    <script src="/js/home-control.js"></script>
-	</head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>LinkBox</title>
+<style type="text/css">
+</style>
+<link href="indexStyle.css" rel="stylesheet" type="text/css" />
+<script src="/js/main.js"></script>
+<script src="/js/home-control.js"></script>
+</head>
 
-	<body onload="healthCheck();">
-		Demo Project is running: <label id="status"></label>
-	</body>
-
+<body onload="healthCheck();">
+<div class="main">
+  <p align="center"><img src="img/logo.png" alt="logo" width="440" height="280" longdesc="img/logo.png" align="middle" /> </p>
+  <p align="center"><h1 align="center" id="Title">Link Box</h1></p>
+  <form id="frm1" action="form_action.asp">
+  <p align="center">
+      First name: <input type="text" name="fname"><br>
+</p>
+<p align="center">
+Last name: <input type="password" name="lname"><br><br>
+</p>
+</form>
+<p align="center">
+<button onclick="myFunction()">submit</button>
+</p>
+</div>
+</body>
 </html>
