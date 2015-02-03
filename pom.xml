@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>edu.csupomona.cs</groupId>
-	<artifactId>cs480</artifactId>
+	<artifactId>linkBox</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>cs480</name>
+	<name>linkBox</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
