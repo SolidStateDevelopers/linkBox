@@ -4,7 +4,7 @@
 var userInfo
 var text
 
-function myFunction() {
+function getUserInfo() {
     var x = document.getElementById("frm1");
     var text = "";
     var i;
