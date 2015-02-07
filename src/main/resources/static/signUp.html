@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Sign Up</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="/js/userData.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
+    </head>
+    <body>
+        <fieldset>
+    <legend>Personal Info</legend>
+    <table cellpadding="3">
+      <tr><td width="150px"><strong>Desired username</strong></td><td><input type="text" id="input_username"></td></tr>
+      <tr><td><strong>First name</strong></td><td><input type="text" id="input_firstname"></td></tr>
+      <tr><td><strong>Last name</strong></td><td><input type="text" id="input_lastname"></td></tr>
+      <tr><td><strong>password</strong></td><td><input type="password" id="input_password"></td></tr>
+    </table>
+    </fieldset>
+
+<fieldset style="text-align: center">
+    <legend>Terms & conditions</legend>
+
+    <textarea cols="50" rows="5">You better have fun. Under pentaly of law, anyone seen not having fun will be subject to penal code: 12345 section WEEEEE dash 8(because all cool penal codes have dashes)</textarea>
+    <br/>
+    I confirm that I agree with terms & conditions <input type="checkbox" name="agreeWithTerms" value="Y">
+    <br/><br/>
+    
+    <button onclick="addUser()">Sign Up</button>
+</fieldset>
+    </body>
+</html>

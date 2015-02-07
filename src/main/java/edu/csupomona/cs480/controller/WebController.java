@@ -88,39 +88,50 @@ public class WebController {
      * Try it in your web browser:
      * 	http://localhost:8080/cs480/user/user101
      */
-    @RequestMapping(value = "/cs480/user/{userId}", method = RequestMethod.GET)
-    User getUser(@PathVariable("userId") String userId) {
-    	User user = userManager.getUser(userId);
-        return user;
+    @RequestMapping(value = "/user/{userId}/{password}", method = RequestMethod.GET)
+    User getUser(@PathVariable("userId") String userId, @PathVariable("password") String password) {
+        System.out.println("Got here");
+    	User user = userManager.getUser(userId, password);
+        System.out.println("Now I'm here!");
+        if(user.getPass().equals(password)){
+            System.out.println("got it!");
+            return user;
+        } else {
+            return null;
+        }
     }
 
     /**
-     * This is an example of sending an HTTP POST request to
-     * update a user's information (or create the user if not
-     * exists before).
-     *
-     * You can test this with a HTTP client by sending
-     *  http://localhost:8080/cs480/user/user101
-     *  	name=John major=CS
      *
      * Note, the URL will not work directly in browser, because
      * it is not a GET request. You need to use a tool such as
      * curl.
+     * 
+     * The way this url is called is from userData.js
+     * The ajax function will call the url '/user/{userName} and
+     * then this mapping takes over.
+     * 
+     * The user information is then sent to the 'userManager' class which will 
+     * add that user info to a JSON file. 
+     * 
      *
      * @param id
-     * @param name
-     * @param major
+     * @param Fname
+     * @param Lname
+     * @param password
      * @return
      */
-    @RequestMapping(value = "/cs480/user/{userId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/{userName}", method = RequestMethod.POST)
     User updateUser(
-    		@PathVariable("userId") String id,
-    		@RequestParam("name") String name,
-    		@RequestParam(value = "major", required = false) String major) {
+    		@PathVariable("userName") String id,
+                @RequestParam("password") String password,
+                @RequestParam(value = "lastName", required = false) String Lname,
+    		@RequestParam(value = "firstName", required = false) String Fname) {
     	User user = new User();
     	user.setId(id);
-    	user.setMajor(major);
-    	user.setName(name);
+    	user.setLName(Lname);
+    	user.setFName(Fname);
+        user.setPass(password);
     	userManager.updateUser(user);
     	return user;
     }
@@ -141,7 +152,7 @@ public class WebController {
      *
      * @return
      */
-    @RequestMapping(value = "/cs480/users/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/list", method = RequestMethod.GET)
     List<User> listAllUsers() {
     	return userManager.listAllUsers();
     }

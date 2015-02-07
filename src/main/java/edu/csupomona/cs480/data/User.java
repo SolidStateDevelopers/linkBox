@@ -10,10 +10,12 @@ public class User {
 
 	/** The unique user Id */
     private String id;
-    /** The unique user Id */
-    private String name;
-    /** The unique user Id */
-    private String major;
+    /** The user First Name */
+    private String Fname;
+    /** The user Last Name */
+    private String Lname;
+    /** The unique user password */
+    private String password;
     /** The timestamp when the user is being created */
     private String creationTime = new Date(System.currentTimeMillis()).toString();
 
@@ -25,20 +27,28 @@ public class User {
         this.id = id;
     }
 
-	public String getName() {
-		return name;
+	public String getFName() {
+		return Fname;
+	}
+        
+        public String getLName() {
+		return Lname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFName(String First_name) {
+		this.Fname = First_name;
+	}
+        
+        public void setLName(String Last_name) {
+		this.Lname = Last_name;
 	}
 
-	public String getMajor() {
-		return major;
+	public String getPass() {
+		return password;
 	}
 
-	public void setMajor(String major) {
-		this.major = major;
+	public void setPass(String pass) {
+		this.password = pass;
 	}
 
 	public String getCreationTime() {

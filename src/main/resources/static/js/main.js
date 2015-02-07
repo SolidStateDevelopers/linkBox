@@ -4,7 +4,7 @@
 var userInfo
 var text
 
-function getUserInfo() {
+function checkUserInfo() {
     var x = document.getElementById("frm1");
     var text = "";
     var i;
@@ -29,7 +29,27 @@ function userInfo() {
 	document.close()
 }
 
+//want to use the userID to show the first and last name of the person, if it exsits 
+
+//NOT WORKING
 function showInfo() {
-	text = localStorage.getItem("userStored")
-	document.getElementById("demo").innerHTML = text
+	var userId = localStorage.getItem("userID");
+	if (userId) {
+		$.ajax(
+				{
+					type : "GET",
+					url  : "/cs480/user/" + userId,
+					data : {
+					},
+					success : function(result) {
+						$('#result_Fname').text(result.Fname);
+						$('#result_Lname').text(result.Lname);
+					},
+					error: function (jqXHR, exception) {
+						alert("Failed to get the user.");
+					}
+				});
+	} else {
+		alert("Invalid user Id");
+	}
 }

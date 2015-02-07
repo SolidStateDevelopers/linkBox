@@ -69,9 +69,14 @@ public class FSUserManager implements UserManager {
 	}
 
 	@Override
-	public User getUser(String userId) {
+	public User getUser(String userId, String password) {
 		UserMap userMap = getUserMap();
-        return userMap.get(userId);
+                User user = userMap.get(userId);
+                if(user.getPass().equals(password)){
+                    return userMap.get(userId);
+                } else {
+                    return null;
+                }
 	}
 
 	@Override

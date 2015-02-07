@@ -16,7 +16,7 @@ public interface UserManager {
 	 * @param userId
 	 * @return the User object
 	 */
-	public User getUser(String userId);
+	public User getUser(String userId, String password);
 
 	/**
 	 * Update the given user object and persist it.
