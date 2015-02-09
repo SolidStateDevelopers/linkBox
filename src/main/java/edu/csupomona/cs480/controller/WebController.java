@@ -14,6 +14,10 @@ import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 
 /**
  * This is the controller used by Spring framework.
@@ -134,6 +138,30 @@ public class WebController {
         user.setPass(password);
     	userManager.updateUser(user);
     	return user;
+    }
+    
+    /*
+     * Added a method that asks for user name and password
+     * This method will be used for future MySQL login
+     * 
+     */
+    @RequestMapping(value = "/login/access", method = RequestMethod.POST)
+    String userLogin(@RequestParam("user") String userName,
+    				@RequestParam("pass") String password)
+    {	
+    	try
+    	{
+    		Class.forName("com.mysql.jdbc.Driver").newInstance();
+    		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/logindb",userName,password);
+    		
+    		conn.close();
+    	}
+    	catch (Exception e)
+    	{
+    		
+    	}
+    	
+    	return "Login succesful!";
     }
 
     /**
