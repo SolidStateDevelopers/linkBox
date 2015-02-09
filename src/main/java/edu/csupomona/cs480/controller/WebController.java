@@ -2,6 +2,10 @@ package edu.csupomona.cs480.controller;
 
 import java.util.List;
 
+import com.google.common.base.Stopwatch;
+import com.google.common.collect.*;
+import com.google.common.collect.Queues;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -184,7 +188,14 @@ public class WebController {
     List<User> listAllUsers() {
     	return userManager.listAllUsers();
     }
-
+    
+    @RequestMapping(value = "/cs480/dalin1120guava", method = RequestMethod.GET)
+    String guavaTestMethod()
+    {
+       Stopwatch watchTester = Stopwatch.createStarted();
+       return "Hello, the timer has been initialized but not started.";
+       
+    }
     /*********** Web UI Test Utility **********/
     /**
      * This method provide a simple web UI for you to test the different
