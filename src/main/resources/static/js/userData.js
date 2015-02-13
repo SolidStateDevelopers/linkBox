@@ -27,27 +27,33 @@ function addUser() {
     }
 }
 
-function checkUserInfo(username, password) {
-	var username = $('#user').val();
-        var password = $('#pass').val();
-	if (username && password) {
-		$.ajax(
-				{
-					type : "GET",
-					url  : "/user/" + username + "/" + password,
-					data : {
-					},
-					success : function(result) {
-                                                window.open("main.html","_self");
-					},
-					error: function (jqXHR, exception) {
-						alert("Failed to get the user or password.");
-					}
-				});
-	} else {
-		alert("must enter username and password");
-	}
+function checkUserInfo() {
+    var username = $('#user').val();
+    var password = $('#pass').val();
+    if (username && password) {
+        $.ajax(
+                {
+                    //using a get is not secure. probly better post but first going to 
+                    //worry about functionality
+                    type: "GET",
+                    url: "/user/" + username + "/" + password,
+                    data: {
+                    },
+                    success: function (result) {
+                        localStorage.setItem("userID", username);
+                        localStorage.setItem("userFname", result.Fname);
+                        localStorage.setItem("userLname", result.Lname);
+                        window.open("main.html", "_self");
+                    },
+                    error: function (jqXHR, exception) {
+                        alert("Failed to get the user or password.");
+                    }
+                });
+    } else {
+        alert("must enter username and password");
+    }
 }
+
 
 /* 
  * Still need to add a delete user function (maybe?), and

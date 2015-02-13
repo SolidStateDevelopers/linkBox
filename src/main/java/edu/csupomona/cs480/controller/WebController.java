@@ -98,11 +98,9 @@ public class WebController {
      */
     @RequestMapping(value = "/user/{userId}/{password}", method = RequestMethod.GET)
     User getUser(@PathVariable("userId") String userId, @PathVariable("password") String password) {
-        System.out.println("Got here");
     	User user = userManager.getUser(userId, password);
-        System.out.println("Now I'm here!");
         if(user.getPass().equals(password)){
-            System.out.println("got it!");
+            System.out.println("in userpass");
             return user;
         } else {
             return null;
