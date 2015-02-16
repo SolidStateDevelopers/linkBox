@@ -21,6 +21,7 @@ import edu.csupomona.cs480.data.provider.UserManager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import edu.csupomona.cs480.data.provider.SQLLogin;;
 
 
 /**
@@ -153,14 +154,24 @@ public class WebController {
     {	
     	try
     	{
+    		SQLLogin sl = new SQLLogin();
+    		sl = sl.getInfo();
+    		String login = sl.getLogin();
+    		String sqlPass = sl.getPassword();
+    		String address = sl.getAddress();
+    		String dbname = sl.getdbName();
     		Class.forName("com.mysql.jdbc.Driver").newInstance();
-    		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/logindb",userName,password);
+    		Connection conn = DriverManager.getConnection("jdbc:mysql://"+address+":3306/"+dbname,login,sqlPass);
+    		/*
+    		 * Do link stuff here
+    		 * Call link methods here
+    		 */
     		
     		conn.close();
     	}
     	catch (Exception e)
     	{
-    		
+    		return "Connection error";
     	}
     	
     	return "Login succesful!";
