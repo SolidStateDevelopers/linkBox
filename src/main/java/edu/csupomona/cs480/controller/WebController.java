@@ -24,6 +24,9 @@ import java.sql.SQLException;
 import edu.csupomona.cs480.data.provider.SQLLogin;;
 
 
+import edu.csupomona.cs480.data.SaveData;
+import edu.csupomona.cs480.data.provider.SaveManager;
+
 /**
  * This is the controller used by Spring framework.
  * <p>
@@ -45,6 +48,7 @@ public class WebController {
 	 */
     @Autowired
     private UserManager userManager;
+    private SaveManager saveManager;
 
     
     /**
@@ -217,4 +221,30 @@ public class WebController {
         return modelAndView;
     }
 
+    
+    
+    //Placeholder for the user submit page
+    @RequestMapping(value = "/cs480/submit/list", method = RequestMethod.GET)
+    List<SaveData> listAllData() {
+       return saveManager.listAllData();
+    }
+    
+    @RequestMapping(value = "/cs480/submit", method = RequestMethod.GET)
+    ModelAndView getBookmark() {
+        ModelAndView modelAndView = new ModelAndView("submit");
+        modelAndView.addObject("bookmarks", listAllData());
+        return modelAndView;
+    }
+    
+    
+    @RequestMapping(value = "/cs480/submit/temp", method = RequestMethod.POST)
+    SaveData updateData(
+    		@RequestParam("Category") String category,
+         @RequestParam("Bookmark") String bookmark) {
+    	SaveData data = new SaveData();
+    	data.setBookmark(bookmark);
+    	data.setCategory(category);
+    	saveManager.updateData(data);
+      return data;
+    }
 }

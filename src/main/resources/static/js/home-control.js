@@ -81,3 +81,29 @@ function getUser(userId) {
 		alert("Invalid user Id");
 	}
 }
+function addBookmark() {
+
+	var category = $('#input_category').val();
+	var bookmark = $('#input_bookmark').val();
+
+	if (userId) {
+		$.ajax(
+				{
+					type : "POST",
+					url  : "/cs480/submit/temp",
+					data : {
+						"User" : userId,
+						"Category": category,
+                                                "Bookmark": bookmark
+					},
+					success : function(result) {
+						location.reload();
+					},
+					error: function (jqXHR, exception) {
+						alert("Couldn't save link.");
+					}
+				});
+	} else {
+		alert("Could not save link");
+	}
+}
