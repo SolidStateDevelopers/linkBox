@@ -26,17 +26,19 @@
             <label>User List</label>
             <table border="1">            
                 <tr>
-                    <td>ID</td>
-                    <td>Name</td> 
-                    <td>Major</td> 
+                    <td>ID</td> 
                     <td>Creation Time</td>
                     <td>Delete</td>
                 </tr>
+<!--
+Where is the list coming from?
+
+Error would not load the page if user.Fname and user.Lname was posted
+So I'm assuming that the list is not getting all of the JSON information
+-->
                 <#list users as user>
                         <tr>
                             <td>${user.id}</td>
-                            <td>${user.name}</td>
-                            <td>${user.major}</td>
                             <td>${user.creationTime}</td>
                             <td><button onclick="deleteUser('${user.id}')">Delete</button></td>
                         </tr>
@@ -51,14 +53,14 @@
             <table border="1">
                 <tr>
                     <td>ID</td>
-                    <td>Name</td> 
-                    <td>Major</td>                     
+                    <td>First Name</td> 
+                    <td>Last Name</td>                     
                     <td>Add</td>
                 </tr>                
                 <tr>
                     <td><input type="text" id="input_id"></td>
-                    <td><input type="text" id="input_name"></td>
-                    <td><input type="text" id="input_major"></td>                    
+                    <td><input type="text" id="input_Fname"></td>
+                    <td><input type="text" id="input_Lname"></td>                    
                     <td><button onclick="addUser()">Add</button></td>
                 </tr>
             </table>
@@ -77,8 +79,8 @@
                 </tr>
                 <tr>
                     <td><label id="result_id"></td>
-                    <td><label id="result_name"></td>
-                    <td><label id="result_major"></td>
+                    <td><label id="result_Fname"></td>
+                    <td><label id="result_Lname"></td>
                 </tr>
             </table>
         </div>

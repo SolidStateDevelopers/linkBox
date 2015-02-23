@@ -186,7 +186,7 @@ public class WebController {
      *
      * @param userId
      */
-    @RequestMapping(value = "/cs480/user/{userId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user/{userId}", method = RequestMethod.DELETE)
     void deleteUser(
     		@PathVariable("userId") String userId) {
     	userManager.deleteUser(userId);
@@ -214,7 +214,7 @@ public class WebController {
      * This method provide a simple web UI for you to test the different
      * functionalities used in this web service.
      */
-    @RequestMapping(value = "/cs480/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     ModelAndView getUserHomepage() {
         ModelAndView modelAndView = new ModelAndView("home");
         modelAndView.addObject("users", listAllUsers());

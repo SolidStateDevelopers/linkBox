@@ -20,7 +20,7 @@ function deleteUser(userId) {
 	$.ajax(
 			{
 				type : "DELETE",
-				url  : "/cs480/user/" + userId,
+				url  : "/user/" + userId,
 				data : {
 				},
 				success : function(result) {
@@ -35,14 +35,14 @@ function deleteUser(userId) {
 function addUser() {
 
 	var userId = $('#input_id').val();
-	var userName = $('#input_name').val();
-	var userMajor = $('#input_major').val();
+	var userName = $('#input_Fname').val();
+	var userMajor = $('#input_Lname').val();
 
 	if (userId) {
 		$.ajax(
 				{
 					type : "POST",
-					url  : "/cs480/user/" + userId,
+					url  : "/user/" + userId,
 					data : {
 						"name" : userName,
 						"major" : userMajor
@@ -65,13 +65,13 @@ function getUser(userId) {
 		$.ajax(
 				{
 					type : "GET",
-					url  : "/cs480/user/" + userId,
+					url  : "/user/" + userId,
 					data : {
 					},
 					success : function(result) {
 						$('#result_id').text(result.id);
-						$('#result_name').text(result.name);
-						$('#result_major').text(result.major);
+						$('#result_Fname').text(result.Fname);
+						$('#result_Lname').text(result.Lname);
 					},
 					error: function (jqXHR, exception) {
 						alert("Failed to get the user.");
