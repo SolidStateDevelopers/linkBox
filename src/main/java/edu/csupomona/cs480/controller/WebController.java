@@ -21,7 +21,7 @@ import edu.csupomona.cs480.data.provider.UserManager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import edu.csupomona.cs480.data.provider.SQLLogin;;
+import edu.csupomona.cs480.data.provider.SQLLogin;
 
 
 import edu.csupomona.cs480.data.SaveData;
