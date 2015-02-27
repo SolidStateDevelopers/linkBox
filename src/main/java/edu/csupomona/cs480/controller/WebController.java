@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 
 import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.data.User;
@@ -48,6 +50,8 @@ public class WebController {
 	 */
     @Autowired
     private UserManager userManager;
+    
+    @Autowired
     private SaveManager saveManager;
 
     
@@ -229,22 +233,36 @@ public class WebController {
        return saveManager.listAllData();
     }
     
-    @RequestMapping(value = "/cs480/submit", method = RequestMethod.GET)
+    @RequestMapping(value = "/cs480/BookmarkController/{userId}", method = RequestMethod.GET)
     ModelAndView getBookmark() {
-        ModelAndView modelAndView = new ModelAndView("submit");
+        ModelAndView modelAndView = new ModelAndView("BookmarkController");
         modelAndView.addObject("bookmarks", listAllData());
         return modelAndView;
     }
     
+    @RequestMapping(value = "/cs480/BookmarkController/{userId}", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView handleBookmark(
+         @PathVariable("userId") String userId,
+         @RequestParam("Bookmark") String bookmark,
+         @RequestParam("Category") String category) 
+         {
+            try
+            {
+               SaveData data = new SaveData();
+               data.setBookmark(bookmark);
+               data.setCategory(category);
+               data.setId(userId);
+               saveManager.updateData(data);
+               ModelAndView modelAndView = new ModelAndView("BookmarkController");
+               modelAndView.addObject("bookmarks", listAllData());
+               return modelAndView;
+            }
+            catch(Exception e)
+            {
+               ModelAndView modelAndView = new ModelAndView("Error");
+               modelAndView.addObject("bookmarks", listAllData());
+               return modelAndView;
+            }
+         }
     
-    @RequestMapping(value = "/cs480/submit/temp", method = RequestMethod.POST)
-    SaveData updateData(
-    		@RequestParam("Category") String category,
-         @RequestParam("Bookmark") String bookmark) {
-    	SaveData data = new SaveData();
-    	data.setBookmark(bookmark);
-    	data.setCategory(category);
-    	saveManager.updateData(data);
-      return data;
-    }
 }

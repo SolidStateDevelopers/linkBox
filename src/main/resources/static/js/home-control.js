@@ -83,18 +83,19 @@ function getUser(userId) {
 }
 function addBookmark() {
 
+        var bookmark = $('#input_bookmark').val();
 	var category = $('#input_category').val();
-	var bookmark = $('#input_bookmark').val();
+	var userId = $('#query_id').val()
 
 	if (userId) {
 		$.ajax(
 				{
 					type : "POST",
-					url  : "/cs480/submit/temp",
+					url  : "/cs480/BookmarkController/" + userId,
 					data : {
-						"User" : userId,
-						"Category": category,
-                                                "Bookmark": bookmark
+                                                "User ID":  userId,
+                                                "Bookmark": bookmark,
+						"Category": category                      
 					},
 					success : function(result) {
 						location.reload();

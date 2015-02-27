@@ -16,16 +16,16 @@
 
     <div>
         <div>
-            <label>User List</label>
+            <label>Bookmark List</label>
             <table border="1">            
                 <tr>
                     <td>Category</td>
                     <td>URL</td> 
                 </tr>
-                <#list users as user>
+                <#list bookmarks as data>
                         <tr>
-                            <td>${data.category}</td>
                             <td>${data.bookmark}</td>
+                            <td>${data.category}</td>                
                         </tr>
                 </#list>
             </table>
@@ -42,8 +42,8 @@
                     <td>Add</td>
                 </tr>                
                 <tr>
-                    <td><input type="text" id="input_category"></td>
-                    <td><input type="text" id="input_bookmark"></td>                   
+                    <td><input type="text" id="input_bookmark"></td>  
+                    <td><input type="text" id="input_category"></td>               
                     <td><button onclick="addBookmark()">Add</button></td>
                 </tr>
             </table>

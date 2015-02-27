@@ -25,12 +25,12 @@ public class FSSaveManager implements SaveManager
    
 	private SaveMap getSaveMap() {
 		SaveMap saveMap = null;
-		File userFile = ResourceResolver.getUserFile();
-        if (userFile.exists()) {
+		File bookmarkFile = ResourceResolver.getBookmarkFile();
+        if (bookmarkFile.exists()) {
         	// read the file and convert the JSON content
         	// to the UserMap object
             try {
-				saveMap = JSON.readValue(userFile, SaveMap.class);
+				saveMap = JSON.readValue(bookmarkFile, SaveMap.class);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -48,35 +48,63 @@ public class FSSaveManager implements SaveManager
 	private void persistSaveMap(SaveMap saveMap) {
 		try {
 			// convert the user object to JSON format
-            JSON.writeValue(ResourceResolver.getUserFile(), saveMap);
+            JSON.writeValue(ResourceResolver.getBookmarkFile(), saveMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
 	}
 
 	@Override
-	public SaveData getBookmark(String bookmark) {
+	public ArrayList<SaveData> getBookmark(String bookmark) {
 		SaveMap saveMap = getSaveMap();
-        return saveMap.get(bookmark);
+      return saveMap.get(bookmark);
 	}
 
 	@Override
 	public void updateData(SaveData data) {
 		SaveMap saveMap = getSaveMap();
-		saveMap.put(data.getBookmark(), data);
+      ArrayList<SaveData> bookmarkList = saveMap.get(data.getBookmark());
+      if(bookmarkList != null)
+      {
+         bookmarkList.add(data);
+         saveMap.put(data.getBookmark(), bookmarkList);
+      }
+      else
+      {
+         bookmarkList = new ArrayList<SaveData>();
+         bookmarkList.add(data);
+         saveMap.put(data.getBookmark(), bookmarkList);
+         
+      }
+      
 		persistSaveMap(saveMap);
 	}
 
 	@Override
-	public void deleteData(String bookmark) {
+	public void deleteData(SaveData data) {
 		SaveMap saveMap = getSaveMap();
-		saveMap.remove(bookmark);
-		persistSaveMap(saveMap);
+      ArrayList<SaveData> bookmarkList = saveMap.get(data.getBookmark());
+      if(bookmarkList != null)
+      {
+         bookmarkList.remove(data);
+         saveMap.put(data.getBookmark(), bookmarkList);
+         persistSaveMap(saveMap);
+      }
+      else
+      {
+         System.out.println("Error");
+      }
 	}
 
 	@Override
-	public List<SaveData> listAllData() {
+	public ArrayList<SaveData> listAllData() {
 		SaveMap saveMap = getSaveMap();
-		return new ArrayList<SaveData>(saveMap.values());
+		ArrayList<SaveData> totalBookmarks = new ArrayList<SaveData>();
+      for(String key : saveMap.keySet())
+      {
+         totalBookmarks.addAll(saveMap.get(key));
+      }
+      return totalBookmarks;
 	}
+   
 }

@@ -8,6 +8,7 @@ package edu.csupomona.cs480.data.provider;
 
 import edu.csupomona.cs480.data.SaveData;
 import java.util.List;
+import java.util.ArrayList;
 
 public interface SaveManager {
 
@@ -21,7 +22,7 @@ public interface SaveManager {
 	 * @param userId
 	 * @return the User object
 	 */
-	public SaveData getBookmark(String bookmark);
+	public ArrayList<SaveData> getBookmark(String bookmark);
 
 	/**
 	 * Update the given user object and persist it.
@@ -40,12 +41,12 @@ public interface SaveManager {
 	 *
 	 * @param userId
 	 */
-	public void deleteData(String bookmark);
+	public void deleteData(SaveData data);
 
 	/**
 	 * List all the current users in the storage.
 	 *
 	 * @return
 	 */
-	public List<SaveData> listAllData();   
+	public ArrayList<SaveData> listAllData();   
 }
