@@ -12,10 +12,10 @@ import java.util.List;
 
 public class DataManager {
 
-	public void addUser(String userName, String password) throws NoSuchAlgorithmException
+	public void addUser(String userName, String firstName, String lastName, String password) throws NoSuchAlgorithmException
 	{
 		String hashedPass = hashPass(password);
-		String sql = "INSERT INTO users (userID, password) VALUES (\"" + userName + "\", \"" + hashedPass + "\");";
+		String sql = "INSERT INTO users (userID, password, fname, lname) VALUES (\"" + userName + "\", \"" + hashedPass + "\", \"" + firstName + "\", \"" + lastName + "\");";
 		executeSQL(sql, "INSERT");
 	}
 	
