@@ -9,10 +9,19 @@ import java.util.Date;
 public class SaveData {
 
 
-
+    private String id;
     private String bookmark;
     private String category;
     
+    public void setId(String id)
+    {
+       this.id = id;
+    }
+    
+    public String getId()
+    {
+       return id;
+    }
     public String getBookmark()
     {
        return bookmark;

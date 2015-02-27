@@ -8,7 +8,7 @@ import java.io.File;
 public class ResourceResolver {
 
 	/** The base folder to store all the data used by this project. */
-    private static final String BASE_DIR = System.getProperty("user.home") + "/";
+    private static final String BASE_DIR = System.getProperty("user.home");
 
     /**
      * Get the file used to store the user object JSON
@@ -22,5 +22,13 @@ public class ResourceResolver {
             file.getParentFile().mkdirs();
         }
         return file;
+    }
+    
+    public static File getBookmarkFile() {
+       File file = new File(BASE_DIR + "/" + "bookmark-map.json");
+       if(!file.getParentFile().exists()) {
+          file.getParentFile().mkdirs();
+       }
+       return file;
     }
 }

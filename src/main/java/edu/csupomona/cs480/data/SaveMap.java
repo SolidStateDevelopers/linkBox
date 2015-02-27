@@ -1,6 +1,7 @@
 package edu.csupomona.cs480.data;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * This class is a HashMap, but we extend the HashMap
@@ -16,6 +17,6 @@ import java.util.HashMap;
  *
  */
 @SuppressWarnings("serial")
-public class SaveMap extends HashMap<String, SaveData> {
+public class SaveMap extends HashMap<String, ArrayList<SaveData>> {
 
 }

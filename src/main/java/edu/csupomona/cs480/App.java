@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import edu.csupomona.cs480.data.provider.FSUserManager;
 import edu.csupomona.cs480.data.provider.SaveManager;
 import edu.csupomona.cs480.data.provider.UserManager;
-
+import edu.csupomona.cs480.data.provider.FSSaveManager;
+import edu.csupomona.cs480.data.provider.SaveManager;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
@@ -33,6 +34,11 @@ public class App {
         return savemanager;
     }
 
+    @Bean
+    public SaveManager saveManager() {
+       SaveManager saveManager = new FSSaveManager();
+       return saveManager;
+    }
     /**
      * This is the running main method for the web application.
      * Please note that Spring requires that there is one and
