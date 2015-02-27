@@ -275,7 +275,7 @@ public class WebController {
             	System.out.println("This is the bookmark: " + bookmark);
             	System.out.println("This is the catgegory: " + category);
             	DataManager dm = new DataManager();
-            	dm.addLink(userId, bookmark);
+            	dm.addLink(userId, bookmark, category);
             	
                /*SaveData data = new SaveData();
                data.setBookmark(bookmark);

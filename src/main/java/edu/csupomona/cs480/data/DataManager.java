@@ -19,9 +19,9 @@ public class DataManager {
 		executeSQL(sql, "INSERT");
 	}
 	
-	public void addLink(String userName, String newLink)
+	public void addLink(String userName, String newLink, String category)
 	{
-		String sql = "INSERT INTO links (userID, link) VALUES (\"" + userName + "\", \"" + newLink + "\");";
+		String sql = "INSERT INTO links (userID, link, category) VALUES (\"" + userName + "\", \"" + newLink + "\", \"" + category + "\");";
 		executeSQL(sql, "INSERT");
 	}
 	
@@ -55,7 +55,7 @@ public class DataManager {
 	
 	public ArrayList<SaveData> getLinks(String userName)
 	{
-		String sql = "SELECT link FROM links WHERE userID = \"" + userName + "\";";
+		String sql = "SELECT link, category FROM links WHERE userID = \"" + userName + "\";";
 		ResultSet rs = executeSQL(sql, "SELECT");
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
@@ -64,7 +64,7 @@ public class DataManager {
 			{
 				SaveData sd = new SaveData();
 				sd.setBookmark(rs.getString("link"));
-				sd.setCategory("None");
+				sd.setCategory(rs.getString("category"));
 				sd.setId(userName);
 				//ls.add(rs.getString("link"));
 				ls.add(sd);
