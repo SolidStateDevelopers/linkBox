@@ -83,11 +83,11 @@ function getUser(userId) {
 }
 function addBookmark() {
 
-        var bookmark = $('#input_bookmark').val();
+    var bookmark = $('#input_bookmark').val();
 	var category = $('#input_category').val();
 	var userId = $('#query_id').val()
 
-	if (userId) {
+	if (bookmark) {
 		$.ajax(
 				{
 					type : "POST",

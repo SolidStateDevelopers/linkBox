@@ -108,14 +108,32 @@ public class WebController {
      * 	http://localhost:8080/cs480/user/user101
      */
     @RequestMapping(value = "/user/{userId}/{password}", method = RequestMethod.GET)
-    User getUser(@PathVariable("userId") String userId, @PathVariable("password") String password) {
-    	User user = userManager.getUser(userId, password);
+    ArrayList<SaveData> getUser(@PathVariable("userId") String userId, @PathVariable("password") String password) {
+    	/*User user = userManager.getUser(userId, password);
         if(user.getPass().equals(password)){
             System.out.println("in userpass");
             return user;
         } else {
             return null;
-        }
+        }*/
+    	DataManager dm = new DataManager();
+    	if (dm.logInUser(userId, password))
+    	{
+    		ArrayList<SaveData> al = dm.getLinks(userId);
+    		return al;
+    	}
+    	else
+    	{
+    		try
+    		{
+    			double d = 1/0;
+    		}
+    		catch(Exception E)
+    		{
+    			throw E;
+    		}
+    		return null;
+    	}
     }
 
     /**
@@ -250,6 +268,9 @@ public class WebController {
          {
             try
             {
+            	System.out.println("This user ID is : " + userId);
+            	System.out.println("This is the bookmark: " + bookmark);
+            	System.out.println("This is the catgegory: " + category);
             	DataManager dm = new DataManager();
             	dm.addLink(userId, bookmark);
             	

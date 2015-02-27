@@ -40,9 +40,6 @@ function checkUserInfo() {
                     data: {
                     },
                     success: function (result) {
-                        localStorage.setItem("userID", username);
-                        localStorage.setItem("userFname", result.Fname);
-                        localStorage.setItem("userLname", result.Lname);
                         window.open("main.html", "_self");
                     },
                     error: function (jqXHR, exception) {

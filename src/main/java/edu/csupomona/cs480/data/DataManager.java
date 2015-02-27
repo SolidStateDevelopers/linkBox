@@ -53,16 +53,21 @@ public class DataManager {
 		executeSQL(sql, "DELETE");
 	}
 	
-	public ArrayList<String> getLinks(String userName)
+	public ArrayList<SaveData> getLinks(String userName)
 	{
 		String sql = "SELECT link FROM links WHERE userID = \"" + userName + "\";";
 		ResultSet rs = executeSQL(sql, "SELECT");
-		ArrayList<String> ls = new ArrayList<String>();
+		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
 		{
 			while(rs.next())
 			{
-				ls.add(rs.getString("link"));
+				SaveData sd = new SaveData();
+				sd.setBookmark(rs.getString("link"));
+				sd.setCategory("None");
+				sd.setId(userName);
+				//ls.add(rs.getString("link"));
+				ls.add(sd);
 			}
 		}
 		catch(Exception E)
