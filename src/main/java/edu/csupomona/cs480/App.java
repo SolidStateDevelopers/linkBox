@@ -1,5 +1,6 @@
 package edu.csupomona.cs480;
 
+import edu.csupomona.cs480.data.provider.FSSaveManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -7,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import edu.csupomona.cs480.data.provider.FSUserManager;
+import edu.csupomona.cs480.data.provider.SaveManager;
 import edu.csupomona.cs480.data.provider.UserManager;
 import edu.csupomona.cs480.data.provider.FSSaveManager;
 import edu.csupomona.cs480.data.provider.SaveManager;
@@ -26,11 +28,10 @@ public class App {
         UserManager userManager = new FSUserManager();
         return userManager;
     }
-
     @Bean
     public SaveManager saveManager() {
-       SaveManager saveManager = new FSSaveManager();
-       return saveManager;
+        SaveManager savemanager = new FSSaveManager();
+        return savemanager;
     }
     /**
      * This is the running main method for the web application.
