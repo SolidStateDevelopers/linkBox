@@ -16,7 +16,7 @@ function addUser() {
                         "password": password
                     },
                     success: function (result) {
-                        window.open("main.html", "_self");
+                        window.open("/cs480/BookmarkController/"+userName, "_self");
                     },
                     error: function (jqXHR, exception) {
                         alert("Failed to add the user. Please check the inputs.");
@@ -40,7 +40,8 @@ function checkUserInfo() {
                     data: {
                     },
                     success: function (result) {
-                        window.open("main.html", "_self");
+                        //can open links to the localhost!
+                        window.open("/cs480/BookmarkController/"+ username, "_self");
                     },
                     error: function (jqXHR, exception) {
                         alert("Failed to get the user or password.");

@@ -30,6 +30,7 @@ import edu.csupomona.cs480.data.provider.SQLLogin;
 
 import edu.csupomona.cs480.data.SaveData;
 import edu.csupomona.cs480.data.provider.SaveManager;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * This is the controller used by Spring framework.
@@ -108,7 +109,7 @@ public class WebController {
      * 	http://localhost:8080/cs480/user/user101
      */
     @RequestMapping(value = "/user/{userId}/{password}", method = RequestMethod.GET)
-    ArrayList<SaveData> getUser(@PathVariable("userId") String userId, @PathVariable("password") String password) {
+    ArrayList<SaveData> getUser(@PathVariable("userId") String userId, @PathVariable("password") String password) throws NoSuchAlgorithmException {
     	/*User user = userManager.getUser(userId, password);
         if(user.getPass().equals(password)){
             System.out.println("in userpass");
@@ -254,9 +255,11 @@ public class WebController {
     }
     
     @RequestMapping(value = "/cs480/BookmarkController/{userId}", method = RequestMethod.GET)
-    ModelAndView getBookmark() {
+    ModelAndView getBookmarkPage(@PathVariable("userId") String userId) {
+        DataManager dm = new DataManager();
+        
         ModelAndView modelAndView = new ModelAndView("BookmarkController");
-        modelAndView.addObject("bookmarks", listAllData());
+        modelAndView.addObject("bookmarks", dm.getLinks(userId));
         return modelAndView;
     }
     
