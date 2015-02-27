@@ -158,18 +158,14 @@ public class WebController {
      * @return
      */
     @RequestMapping(value = "/user/{userName}", method = RequestMethod.POST)
-    User updateUser(
+    void updateUser(
     		@PathVariable("userName") String id,
                 @RequestParam("password") String password,
                 @RequestParam(value = "lastName", required = false) String Lname,
-    		@RequestParam(value = "firstName", required = false) String Fname) {
-    	User user = new User();
-    	user.setId(id);
-    	user.setLName(Lname);
-    	user.setFName(Fname);
-        user.setPass(password);
-    	userManager.updateUser(user);
-    	return user;
+    		@RequestParam(value = "firstName", required = false) String Fname) throws NoSuchAlgorithmException {
+    	DataManager dm = new DataManager();
+        System.out.println("id: " + id + " password: " + password + " Lname: " + Lname + " Fname: " + Fname);
+        dm.addUser(id, password, Fname, Lname);
     }
     
     /*

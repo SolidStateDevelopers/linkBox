@@ -16,7 +16,8 @@ function addUser() {
                         "password": password
                     },
                     success: function (result) {
-                        window.open("/cs480/BookmarkController/"+userName, "_self");
+                        alert("User added!");
+                        window.open("index.html", "_self");
                     },
                     error: function (jqXHR, exception) {
                         alert("Failed to add the user. Please check the inputs.");
