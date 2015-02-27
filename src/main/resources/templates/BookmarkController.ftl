@@ -24,8 +24,8 @@
                 </tr>
                 <#list bookmarks as data>
                         <tr>
+                            <td>${data.category}</td>  
                             <td>${data.bookmark}</td>
-                            <td>${data.category}</td>                
                         </tr>
                 </#list>
             </table>
@@ -42,8 +42,8 @@
                     <td>Add</td>
                 </tr>                
                 <tr>
-                    <td><input type="text" id="input_bookmark"></td>  
-                    <td><input type="text" id="input_category"></td>               
+                    <td><input type="text" id="input_category"></td>  
+                    <td><input type="text" id="input_bookmark"></td> 
                     <td><button onclick="addBookmark()">Add</button></td>
                 </tr>
             </table>

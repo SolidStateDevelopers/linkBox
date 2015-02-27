@@ -28,20 +28,21 @@ function addUser() {
 }
 
 function checkUserInfo() {
-    var username = $('#user').val();
+    var userName = $('#user').val();
     var password = $('#pass').val();
-    if (username && password) {
+    if (userName && password) {
         $.ajax(
                 {
                     //using a get is not secure. probly better post but first going to 
                     //worry about functionality
                     type: "GET",
-                    url: "/user/" + username + "/" + password,
+                    url: "/user/" + userName + "/" + password,
                     data: {
                     },
                     success: function (result) {
                         //can open links to the localhost!
-                        window.open("/cs480/BookmarkController/"+ username, "_self");
+                        localStorage.setItem("userName", userName);
+                        window.open("/cs480/BookmarkController/"+ userName, "_self");
                     },
                     error: function (jqXHR, exception) {
                         alert("Failed to get the user or password.");

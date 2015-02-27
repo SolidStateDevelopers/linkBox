@@ -85,7 +85,7 @@ function addBookmark() {
 
     var bookmark = $('#input_bookmark').val();
 	var category = $('#input_category').val();
-	var userId = $('#query_id').val()
+	var userId = localStorage.getItem("userName");
 
 	if (bookmark) {
 		$.ajax(
