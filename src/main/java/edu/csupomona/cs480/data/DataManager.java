@@ -1,5 +1,7 @@
 package edu.csupomona.cs480.data;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,7 +12,7 @@ import java.util.List;
 
 public class DataManager {
 
-	public void addUser(String userName, String password)
+	public void addUser(String userName, String password) throws NoSuchAlgorithmException
 	{
 		String hashedPass = hashPass(password);
 		String sql = "INSERT INTO users (userID, password) VALUES (\"" + userName + "\", \"" + hashedPass + "\");";
@@ -23,7 +25,7 @@ public class DataManager {
 		executeSQL(sql, "INSERT");
 	}
 	
-	public boolean logInUser(String userName, String password)
+	public boolean logInUser(String userName, String password) throws NoSuchAlgorithmException
 	{
 		boolean success = false;
 		String hashedPass = hashPass(password);
@@ -69,9 +71,16 @@ public class DataManager {
 		}
 		return ls;
 	}
-	private String hashPass(String pass)
+	private String hashPass(String pass) throws NoSuchAlgorithmException
 	{
-		return pass;
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		StringBuffer hashedPass = new StringBuffer();
+		byte[] hash = md.digest(pass.getBytes());
+		for (int i = 0; i < hash.length; i++)
+		{
+			hashedPass.append(Integer.toHexString(0xFF & hash[i]));
+		}
+		return hashedPass.toString();
 	}
 	private ResultSet executeSQL(String sql, String type)
 	{
