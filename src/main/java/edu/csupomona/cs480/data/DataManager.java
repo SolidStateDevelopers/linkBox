@@ -55,7 +55,7 @@ public class DataManager {
 	
 	public ArrayList<SaveData> getLinks(String userName)
 	{
-		String sql = "SELECT link, category FROM links WHERE userID = \"" + userName + "\";";
+		String sql = "SELECT link, category FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
 		ResultSet rs = executeSQL(sql, "SELECT");
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
