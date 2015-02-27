@@ -1,10 +1,10 @@
 package edu.csupomona.cs480.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.*;
-import com.google.common.collect.Queues;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +17,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.csupomona.cs480.App;
+import edu.csupomona.cs480.data.DataManager;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 import edu.csupomona.cs480.data.provider.SQLLogin;
 
 
@@ -248,19 +250,24 @@ public class WebController {
          {
             try
             {
-               SaveData data = new SaveData();
+            	DataManager dm = new DataManager();
+            	dm.addLink(userId, bookmark);
+            	
+               /*SaveData data = new SaveData();
                data.setBookmark(bookmark);
                data.setCategory(category);
                data.setId(userId);
                saveManager.updateData(data);
+               */
                ModelAndView modelAndView = new ModelAndView("BookmarkController");
-               modelAndView.addObject("bookmarks", listAllData());
+               modelAndView.addObject("bookmarks", dm.getLinks(userId));
                return modelAndView;
             }
             catch(Exception e)
             {
+               DataManager dm = new DataManager();
                ModelAndView modelAndView = new ModelAndView("Error");
-               modelAndView.addObject("bookmarks", listAllData());
+               modelAndView.addObject("bookmarks", dm.getLinks(userId));
                return modelAndView;
             }
          }

@@ -53,11 +53,11 @@ public class DataManager {
 		executeSQL(sql, "DELETE");
 	}
 	
-	public List<String> getLinks(String userName)
+	public ArrayList<String> getLinks(String userName)
 	{
 		String sql = "SELECT link FROM links WHERE userID = \"" + userName + "\";";
 		ResultSet rs = executeSQL(sql, "SELECT");
-		List<String> ls = new ArrayList<String>();
+		ArrayList<String> ls = new ArrayList<String>();
 		try
 		{
 			while(rs.next())
