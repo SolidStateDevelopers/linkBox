@@ -108,3 +108,63 @@ function addBookmark() {
 		alert("Could not save link");
 	}
 }
+
+//this is called after the DOM is created so that we can get
+//document elements
+function dragEvents() {
+// target events
+    var target = document.getElementById('target');
+    target.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        return false;
+    });
+
+    target.addEventListener('dragenter', function(e) {
+        e.target.classList.add("dragover");
+    });
+
+    // we want to call this from dragleave and drop
+    function onLeave(e) {
+        e.target.classList.remove("dragover");
+    }
+
+    target.addEventListener('dragleave', onLeave);
+
+    target.addEventListener('drop', function(e) {
+        // don't let the browser switch to an image!
+        e.preventDefault();
+        onLeave(e);
+        
+        var category = window.prompt("Which category do you want this link in?", "Default");
+        var userId = localStorage.getItem("userName");
+        var bookmark = e.dataTransfer.getData('Text');
+        
+        if (category != null) {
+		$.ajax(
+				{
+					type : "POST",
+					url  : "/cs480/BookmarkController/" + userId,
+					data : {
+                                                "User ID":  userId,
+                                                "Bookmark": bookmark,
+						"Category": category                      
+					},
+					success : function(result) {
+						location.reload();
+					},
+					error: function (jqXHR, exception) {
+						alert("Couldn't save link.");
+					}
+				});
+	} else {
+		alert("Could not save link");
+	}
+		//get the text of the url, set it to <a> and place it into the target div
+//		var urlText = e.dataTransfer.getData('Text');
+//		var url = document.createElement("a");
+//		url.setAttribute('href', urlText);
+//		url.innerHTML = urlText;
+//		target.appendChild(url);
+		
+    });
+}

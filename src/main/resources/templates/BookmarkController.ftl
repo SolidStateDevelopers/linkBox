@@ -6,8 +6,8 @@
     <script src="/js/home-control.js"></script>
 </head>
 
-<body>    
-    
+<body onload="dragEvents()">    
+    <div id = "target">
     <div>
         Simple skeleton where user can save links
     </div>
@@ -52,7 +52,7 @@
         <hr>
 
     </div>
-    
+    </div>
     
 </body>
 
