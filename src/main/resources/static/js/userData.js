@@ -1,4 +1,14 @@
 
+window.onload = enterOnText;
+
+function enterOnText(){
+$("#pass").keyup(function(event){
+    if(event.keyCode === 13){
+        $("#userSubmit").click();
+    }
+});
+};
+
 function addUser() {
     var userName = $('#input_username').val();
     var password = $('#input_password').val();
