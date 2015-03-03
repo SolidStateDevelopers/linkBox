@@ -81,10 +81,17 @@ function getUser(userId) {
 		alert("Invalid user Id");
 	}
 }
-function addBookmark() {
-
-    var bookmark = $('#input_bookmark').val();
-	var category = $('#input_category').val();
+function addBookmark(presentCategory) {
+    var category, bookmark;
+    if(presentCategory){
+        category = presentCategory;
+        bookmark = window.prompt("copy or type url here");
+    } else {
+        category = $('#input_category').val();
+        bookmark = $('#input_bookmark').val();
+    }
+    
+	
 	var userId = localStorage.getItem("userName");
 
 	if (bookmark) {

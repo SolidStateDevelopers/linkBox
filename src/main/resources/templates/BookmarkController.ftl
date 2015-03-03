@@ -16,19 +16,26 @@
 
     <div>
         <div>
-            <label>Bookmark List</label>
-            <table border="1">            
-                <tr>
-                    <td>Category</td>
-                    <td>URL</td> 
-                </tr>
+            <label>Bookmark Lists</label>
+              
                 <#list bookmarks as data>
-                        <tr>
-                            <td>${data.category}</td>  
-                            <td>${data.bookmark}</td>
-                        </tr>
+                        <table border="1" style="display: inline-block;">
+
+                            
+                            <tr>
+                                <td>${data.category}</td>
+                                <td><button onclick="addBookmark('${data.category}')">Add</button></td> 
+                            </tr>
+                            <#list bookmarks as subData>
+                                <#if subData.category?matches(data.category)>
+                                <tr>
+                                    <td>${data.bookmark}</td> 
+                                </tr>
+                                </#if>
+                            </#list>
+                        </table>
                 </#list>
-            </table>
+            
         </div>
         
         <hr>
