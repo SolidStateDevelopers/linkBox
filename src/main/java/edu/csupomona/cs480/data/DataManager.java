@@ -55,7 +55,7 @@ public class DataManager {
 	
 	public ArrayList<SaveData> getLinks(String userName)
 	{
-		String sql = "SELECT link, category FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
+		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
 		ResultSet rs = executeSQL(sql, "SELECT");
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
@@ -81,7 +81,7 @@ public class DataManager {
 	
 	public ArrayList<SaveData> getLinksByCategory(String userName, String category)
 	{
-		String sql = "SELECT link, category FROM links WHERE userID = \"" + userName + "\" and category = \"" + category + "\" ORDER BY category, link ASC;";
+		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" and category = \"" + category + "\" ORDER BY category, link ASC;";
 		ResultSet rs = executeSQL(sql, "SELECT");
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
