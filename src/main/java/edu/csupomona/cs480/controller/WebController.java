@@ -262,7 +262,7 @@ public class WebController {
         DataManager dm = new DataManager();
         
         ModelAndView modelAndView = new ModelAndView("userLinks");
-        modelAndView.addObject("bookmarks", dm.getLinks(userId));
+        modelAndView.addObject("bookmarks", dm.getLinksByCategory(userId, category));
         return modelAndView;
     }
     
@@ -271,7 +271,7 @@ public class WebController {
         DataManager dm = new DataManager();
         
         ModelAndView modelAndView = new ModelAndView("BookmarkController");
-        modelAndView.addObject("bookmarks", dm.getLinks(userId));
+        modelAndView.addObject("bookmarks", dm.getCategories(userId));
         return modelAndView;
     }
     
