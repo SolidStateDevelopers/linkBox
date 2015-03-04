@@ -12,6 +12,7 @@ public class SaveData {
     private String id;
     private String bookmark;
     private String category;
+    private short isPublic;
     
     public void setId(String id)
     {
@@ -40,4 +41,16 @@ public class SaveData {
        this.category = category;
     }
     
+    public void setPublic(Short isPublic)
+    {
+    	this.isPublic = isPublic;
+    }
+    
+    public boolean getPublic()
+    {
+    	if (isPublic == 0)
+    		return false;
+    	else
+    		return true;
+    }
 }
