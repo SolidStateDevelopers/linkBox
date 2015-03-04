@@ -78,6 +78,31 @@ public class DataManager {
 		return ls;
 	}
 	
+	public ArrayList<SaveData> getPublicLinks(String userName)
+	{
+		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" AND public = 1 ORDER BY category, link ASC;";
+		ResultSet rs = executeSQL(sql, "SELECT");
+		ArrayList<SaveData> ls = new ArrayList<SaveData>();
+		try
+		{
+			while(rs.next())
+			{
+				SaveData sd = new SaveData();
+				sd.setBookmark(rs.getString("link"));
+				sd.setCategory(rs.getString("category"));
+				sd.setId(userName);
+				sd.setPublic(rs.getBoolean("public"));
+				//ls.add(rs.getString("link"));
+				ls.add(sd);
+			}
+		}
+		catch(Exception E)
+		{
+			E.printStackTrace();
+		}
+		return ls;
+	}
+	
 	
 	public ArrayList<SaveData> getLinksByCategory(String userName, String category)
 	{
