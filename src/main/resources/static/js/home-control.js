@@ -106,6 +106,7 @@ function addBookmark(presentCategory) {
 					},
 					success : function(result) {
 						location.reload();
+                                                alert("URL succesfully saved!");
 					},
 					error: function (jqXHR, exception) {
 						alert("Couldn't save link.");
@@ -150,7 +151,7 @@ function dragEvents() {
 		$.ajax(
 				{
 					type : "POST",
-					url  : "/cs480/BookmarkController/" + userId,
+					url  : "/cs480/ControlPanel/" + userId,
 					data : {
                                                 "User ID":  userId,
                                                 "Bookmark": bookmark,
@@ -174,4 +175,24 @@ function dragEvents() {
 //		target.appendChild(url);
 		
     });
+}
+
+function goToSettings() {
+    var userName = localStorage.getItem("userName")
+    if (userName) {
+        $.ajax(
+                {
+                    data: {
+                    },
+                    success: function (result) {
+                        //can open links to the localhost!
+                        window.open("/cs480/ControlPanel/"+ userName, "_self");
+                    },
+                    error: function (jqXHR, exception) {
+                        alert("Could not go to settings");
+                    }
+                });
+    } else {
+        alert("Please try again!");
+    }
 }

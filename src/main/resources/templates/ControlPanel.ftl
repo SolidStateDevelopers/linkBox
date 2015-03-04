@@ -14,7 +14,30 @@
 
     <hr>
 
-    <div>      
+    <div>
+        <div>
+            <label>Bookmark Lists</label>
+              
+                <#list bookmarks as data>
+                        <table border="1" style="display: inline-block;">
+
+                            
+                            <tr>
+                                <td>${data.category}</td>
+                                <td><button onclick="addBookmark('${data.category}')">Add</button></td> 
+                            </tr>
+                            <#list bookmarks as subData>
+                                <#if subData.category?matches(data.category)>
+                                <tr>
+                                    <td>${data.bookmark}</td> 
+                                </tr>
+                                </#if>
+                            </#list>
+                        </table>
+                </#list>
+            
+        </div>
+        
         <hr>
         
         <div>
@@ -29,7 +52,6 @@
                     <td><input type="text" id="input_category"></td>  
                     <td><input type="text" id="input_bookmark"></td> 
                     <td><button onclick="addBookmark()">Add</button></td>
-                    <td><button onclick="goToSettings()">Settings</button></td>
                 </tr>
             </table>
         </div>

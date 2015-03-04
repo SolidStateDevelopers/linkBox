@@ -258,7 +258,51 @@ public class WebController {
         modelAndView.addObject("bookmarks", dm.getLinks(userId));
         return modelAndView;
     }
+
+    @RequestMapping(value = "/cs480/ControlPanel/{userId}", method = RequestMethod.GET)
+    ModelAndView controlPanelPage(@PathVariable("userId") String userId) {
+        DataManager dm = new DataManager();
+        
+        ModelAndView modelAndView = new ModelAndView("ControlPanel");
+        modelAndView.addObject("bookmarks", dm.getLinks(userId));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/cs480/ControlPanel/{userId}", method = RequestMethod.POST)
+    public @ResponseBody ModelAndView handleControlPanel(
+         @PathVariable("userId") String userId,
+         @RequestParam("Bookmark") String bookmark,
+         @RequestParam("Category") String category) 
+         {
+            try
+            {
+            	System.out.println("This user ID is : " + userId);
+            	System.out.println("This is the bookmark: " + bookmark);
+            	System.out.println("This is the catgegory: " + category);
+            	DataManager dm = new DataManager();
+            	dm.addLink(userId, bookmark, category);
+            	
+               /*SaveData data = new SaveData();
+               data.setBookmark(bookmark);
+               data.setCategory(category);
+               data.setId(userId);
+               saveManager.updateData(data);
+               */
+               ModelAndView modelAndView = new ModelAndView("ControlPanel");
+               modelAndView.addObject("bookmarks", dm.getLinks(userId));
+               return modelAndView;
+            }
+            catch(Exception e)
+            {
+               DataManager dm = new DataManager();
+               ModelAndView modelAndView = new ModelAndView("Error");
+               modelAndView.addObject("bookmarks", dm.getLinks(userId));
+               return modelAndView;
+            }
+         }
     
+
+      
     @RequestMapping(value = "/cs480/BookmarkController/{userId}", method = RequestMethod.POST)
     public @ResponseBody ModelAndView handleBookmark(
          @PathVariable("userId") String userId,
