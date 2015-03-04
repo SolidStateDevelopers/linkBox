@@ -250,6 +250,15 @@ public class WebController {
        return saveManager.listAllData();
     }
     
+    @RequestMapping(value = "/cs480/BookmarkController/{userId}/{category}", method = RequestMethod.GET)
+    ModelAndView getBookmarkPage(@PathVariable("userId") String userId, @PathVariable("category") String category) {
+        DataManager dm = new DataManager();
+        
+        ModelAndView modelAndView = new ModelAndView("userLinks");
+        modelAndView.addObject("bookmarks", dm.getLinks(userId));
+        return modelAndView;
+    }
+    
     @RequestMapping(value = "/cs480/BookmarkController/{userId}", method = RequestMethod.GET)
     ModelAndView getBookmarkPage(@PathVariable("userId") String userId) {
         DataManager dm = new DataManager();
