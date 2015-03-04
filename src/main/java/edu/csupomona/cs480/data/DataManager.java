@@ -131,7 +131,7 @@ public class DataManager {
 	
 	public ArrayList<SaveData> getCategories(String userName)
 	{
-		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
+		String sql = "SELECT DISTINCT category FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
 		ResultSet rs = executeSQL(sql, "SELECT");
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
@@ -139,10 +139,10 @@ public class DataManager {
 			while(rs.next())
 			{
 				SaveData sd = new SaveData();
-				sd.setBookmark(rs.getString("link"));
+				//sd.setBookmark(rs.getString("link"));
 				sd.setCategory(rs.getString("category"));
 				sd.setId(userName);
-				sd.setPublic(rs.getBoolean("public"));
+				//sd.setPublic(rs.getBoolean("public"));
 				//ls.add(rs.getString("link"));
 				ls.add(sd);
 			}
