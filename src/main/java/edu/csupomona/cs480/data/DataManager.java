@@ -129,7 +129,7 @@ public class DataManager {
 		return ls;
 	}
 	
-	public ArrayList<SaveData> getCategory(String userName)
+	public ArrayList<SaveData> getCategories(String userName)
 	{
 		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
 		ResultSet rs = executeSQL(sql, "SELECT");
