@@ -66,6 +66,7 @@ public class DataManager {
 				sd.setBookmark(rs.getString("link"));
 				sd.setCategory(rs.getString("category"));
 				sd.setId(userName);
+				sd.setPublic(rs.getShort("public"));
 				//ls.add(rs.getString("link"));
 				ls.add(sd);
 			}
@@ -76,6 +77,52 @@ public class DataManager {
 		}
 		return ls;
 	}
+	
+	
+	public ArrayList<SaveData> getLinksByCategory(String userName, String category)
+	{
+		String sql = "SELECT link, category FROM links WHERE userID = \"" + userName + "\" and category = \"" + category + "\" ORDER BY category, link ASC;";
+		ResultSet rs = executeSQL(sql, "SELECT");
+		ArrayList<SaveData> ls = new ArrayList<SaveData>();
+		try
+		{
+			while(rs.next())
+			{
+				SaveData sd = new SaveData();
+				sd.setBookmark(rs.getString("link"));
+				sd.setCategory(rs.getString("category"));
+				sd.setId(userName);
+				sd.setPublic(rs.getShort("public"));
+				//ls.add(rs.getString("link"));
+				ls.add(sd);
+			}
+		}
+		catch(Exception E)
+		{
+			E.printStackTrace();
+		}
+		return ls;
+	}
+	
+	public ArrayList<String> getCategories(String userName)
+	{
+		String sql = "SELECT link, category FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
+		ResultSet rs = executeSQL(sql, "SELECT");
+		ArrayList<String> ls = new ArrayList<String>();
+		try
+		{
+			while(rs.next())
+			{
+				ls.add(rs.getString("category"));
+			}
+		}
+		catch(Exception E)
+		{
+			E.printStackTrace();
+		}
+		return ls;
+	}
+	
 	private String hashPass(String pass) throws NoSuchAlgorithmException
 	{
 		MessageDigest md = MessageDigest.getInstance("SHA-256");

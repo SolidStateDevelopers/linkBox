@@ -242,7 +242,14 @@ public class WebController {
         return modelAndView;
     }
 
-    
+    @RequestMapping(value = "/public/{userId}", method = RequestMethod.GET)
+    ModelAndView getPublicLinks(@PathVariable("userId") String userId) {
+        DataManager dm = new DataManager();
+        
+        ModelAndView modelAndView = new ModelAndView("PublicLinks");
+        modelAndView.addObject("bookmarks", dm.getLinks(userId));
+        return modelAndView;
+    }
     
     //Placeholder for the user submit page
     @RequestMapping(value = "/cs480/submit/list", method = RequestMethod.GET)
