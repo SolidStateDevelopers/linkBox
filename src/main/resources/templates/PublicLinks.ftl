@@ -21,8 +21,10 @@
 				</tr>
 				<#list bookmarks as data>
 				<tr>
-					<td>${data.category}</td>
-					<td>${data.bookmark}</td>
+					<#if data.public>
+						<td>${data.category}</td>
+						<td>${data.bookmark}</td>
+					</if>
 				</tr>
 				</#list>
 			</table>
