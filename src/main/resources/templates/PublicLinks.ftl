@@ -28,16 +28,6 @@
 			</table>
 		</div>
 		<hr>
-		<div>
-			<label>Add User</label>
-				<table border="1">
-					<tr>
-						<td>Category</td>
-						<td>URL</td>
-					</tr>
-				</table>
-		</div>
-		<hr>
 	</div>
 	</div>
 </body>
