@@ -129,7 +129,32 @@ public class DataManager {
 		return ls;
 	}
 	
-	public ArrayList<String> getCategories(String userName)
+	public ArrayList<SaveData> getCategory(String userName, String category)
+	{
+		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" and category = \"" + category + "\" ORDER BY category, link ASC;";
+		ResultSet rs = executeSQL(sql, "SELECT");
+		ArrayList<SaveData> ls = new ArrayList<SaveData>();
+		try
+		{
+			while(rs.next())
+			{
+				SaveData sd = new SaveData();
+				sd.setBookmark(rs.getString("link"));
+				sd.setCategory(rs.getString("category"));
+				sd.setId(userName);
+				sd.setPublic(rs.getBoolean("public"));
+				//ls.add(rs.getString("link"));
+				ls.add(sd);
+			}
+		}
+		catch(Exception E)
+		{
+			E.printStackTrace();
+		}
+		return ls;
+	}
+	
+	/*public ArrayList<String> getCategories(String userName)
 	{
 		String sql = "SELECT DISTINCT category FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
 		ResultSet rs = executeSQL(sql, "SELECT");
@@ -146,7 +171,7 @@ public class DataManager {
 			E.printStackTrace();
 		}
 		return ls;
-	}
+	}*/
 	
 	private String hashPass(String pass) throws NoSuchAlgorithmException
 	{
