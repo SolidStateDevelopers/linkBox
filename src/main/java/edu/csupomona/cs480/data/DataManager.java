@@ -129,9 +129,9 @@ public class DataManager {
 		return ls;
 	}
 	
-	public ArrayList<SaveData> getCategory(String userName, String category)
+	public ArrayList<SaveData> getCategory(String userName)
 	{
-		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" and category = \"" + category + "\" ORDER BY category, link ASC;";
+		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
 		ResultSet rs = executeSQL(sql, "SELECT");
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
