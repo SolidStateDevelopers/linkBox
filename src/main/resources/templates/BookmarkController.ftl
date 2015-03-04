@@ -25,13 +25,6 @@
                                 <td><a href="${data.category}">${data.category}</a></td>
                                 <td><button onclick="addBookmark('${data.category}')">Add</button></td> 
                             </tr>
-                            <#list bookmarks as subData>
-                                <#if subData.category?matches(data.category)>
-                                <tr>
-                                    <td><a href = "http://${subData.bookmark}">${subData.bookmark}</a></td> 
-                                </tr>
-                                </#if>
-                            </#list>
                         </table>
                 </#list>
             
