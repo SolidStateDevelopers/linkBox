@@ -106,7 +106,7 @@ public class DataManager {
 	
 	public ArrayList<String> getCategories(String userName)
 	{
-		String sql = "SELECT link, category FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
+		String sql = "SELECT category FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
 		ResultSet rs = executeSQL(sql, "SELECT");
 		ArrayList<String> ls = new ArrayList<String>();
 		try
