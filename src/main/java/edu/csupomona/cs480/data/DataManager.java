@@ -66,7 +66,7 @@ public class DataManager {
 				sd.setBookmark(rs.getString("link"));
 				sd.setCategory(rs.getString("category"));
 				sd.setId(userName);
-				sd.setPublic(rs.getShort("public"));
+				sd.setPublic(rs.getBoolean("public"));
 				//ls.add(rs.getString("link"));
 				ls.add(sd);
 			}
@@ -92,7 +92,7 @@ public class DataManager {
 				sd.setBookmark(rs.getString("link"));
 				sd.setCategory(rs.getString("category"));
 				sd.setId(userName);
-				sd.setPublic(rs.getShort("public"));
+				sd.setPublic(rs.getBoolean("public"));
 				//ls.add(rs.getString("link"));
 				ls.add(sd);
 			}
