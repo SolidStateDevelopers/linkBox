@@ -1,6 +1,5 @@
 package edu.csupomona.cs480.data;
 
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,13 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
+/*
+ * This class handles the connection to the database, along with any queries to that database
+ * the application requires.
+ */
 public class DataManager {
 
 	public void addUser(String userName, String password, String firstName, String lastName) throws NoSuchAlgorithmException
 	{
-		String hashedPass = hashPass(password);
+		PasswordManager passManager = new PasswordManager();
+	    String hashedPass = passManager.hashStringWithSHA256(password);
 		String sql = "INSERT INTO users (userID, password, fname, lname) VALUES (\"" + userName + "\", \"" + hashedPass + "\", \"" + firstName + "\", \"" + lastName + "\");";
 		executeSQL(sql, "INSERT");
 	}
@@ -28,7 +31,8 @@ public class DataManager {
 	public boolean logInUser(String userName, String password) throws NoSuchAlgorithmException
 	{
 		boolean success = false;
-		String hashedPass = hashPass(password);
+		PasswordManager passManager = new PasswordManager();
+		String hashedPass = passManager.hashStringWithSHA256(password);
 		String sql = "SELECT * FROM users WHERE userID = \"" + userName + "\" AND password = \"" + hashedPass + "\";";
 		ResultSet rs = executeSQL(sql, "SELECT");
 		try {
@@ -103,7 +107,6 @@ public class DataManager {
 		return ls;
 	}
 	
-	
 	public ArrayList<SaveData> getLinksByCategory(String userName, String category)
 	{
 		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" and category = \"" + category + "\" ORDER BY category, link ASC;";
@@ -173,17 +176,7 @@ public class DataManager {
 		return ls;
 	}*/
 	
-	private String hashPass(String pass) throws NoSuchAlgorithmException
-	{
-		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		StringBuffer hashedPass = new StringBuffer();
-		byte[] hash = md.digest(pass.getBytes());
-		for (int i = 0; i < hash.length; i++)
-		{
-			hashedPass.append(Integer.toHexString(0xFF & hash[i]));
-		}
-		return hashedPass.toString();
-	}
+
 	private ResultSet executeSQL(String sql, String type)
 	{
 		ResultSet rs = null;
