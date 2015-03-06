@@ -19,13 +19,13 @@ public class DataManager {
 		PasswordManager passManager = new PasswordManager();
 	    String hashedPass = passManager.hashStringWithSHA256(password);
 		String sql = "INSERT INTO users (userID, password, fname, lname) VALUES (\"" + userName + "\", \"" + hashedPass + "\", \"" + firstName + "\", \"" + lastName + "\");";
-		executeSQL(sql, "INSERT");
+		executeInsertSQL(sql);
 	}
 	
 	public void addLink(String userName, String newLink, String category)
 	{
 		String sql = "INSERT INTO links (userID, link, category) VALUES (\"" + userName + "\", \"" + newLink + "\", \"" + category + "\");";
-		executeSQL(sql, "INSERT");
+		executeInsertSQL(sql);
 	}
 	
 	public boolean logInUser(String userName, String password) throws NoSuchAlgorithmException
@@ -34,7 +34,7 @@ public class DataManager {
 		PasswordManager passManager = new PasswordManager();
 		String hashedPass = passManager.hashStringWithSHA256(password);
 		String sql = "SELECT * FROM users WHERE userID = \"" + userName + "\" AND password = \"" + hashedPass + "\";";
-		ResultSet rs = executeSQL(sql, "SELECT");
+		ResultSet rs = executeSelectSQL(sql);
 		try {
 			if (rs == null || !rs.next())
 			{
@@ -54,13 +54,13 @@ public class DataManager {
 	public void deleteLink(String userName, String link)
 	{
 		String sql = "DELETE FROM links WHERE userID = \"" + userName + "\" AND link = \"" + link + "\";";
-		executeSQL(sql, "DELETE");
+		executeDeleteSQL(sql);
 	}
 	
 	public ArrayList<SaveData> getLinks(String userName)
 	{
 		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
-		ResultSet rs = executeSQL(sql, "SELECT");
+		ResultSet rs = executeSelectSQL(sql);
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
 		{
@@ -85,7 +85,7 @@ public class DataManager {
 	public ArrayList<SaveData> getPublicLinks(String userName)
 	{
 		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" AND public = 1 ORDER BY category, link ASC;";
-		ResultSet rs = executeSQL(sql, "SELECT");
+		ResultSet rs = executeSelectSQL(sql);
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
 		{
@@ -110,7 +110,7 @@ public class DataManager {
 	public ArrayList<SaveData> getLinksByCategory(String userName, String category)
 	{
 		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" and category = \"" + category + "\" ORDER BY category, link ASC;";
-		ResultSet rs = executeSQL(sql, "SELECT");
+		ResultSet rs = executeSelectSQL(sql);
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
 		{
@@ -135,7 +135,7 @@ public class DataManager {
 	public ArrayList<SaveData> getCategories(String userName)
 	{
 		String sql = "SELECT DISTINCT category FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
-		ResultSet rs = executeSQL(sql, "SELECT");
+		ResultSet rs = executeSelectSQL(sql);
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
 		{
@@ -177,7 +177,7 @@ public class DataManager {
 	}*/
 	
 
-	private ResultSet executeSQL(String sql, String type)
+	/*private ResultSet executeSQL(String sql, String type)
 	{
 		ResultSet rs = null;
 		try
@@ -193,6 +193,59 @@ public class DataManager {
 			{
 				st.executeUpdate(sql);
 			}
+		}
+		catch (Exception E)
+		{
+			E.printStackTrace();
+		}
+		return rs;
+	}
+	*/
+	
+	private ResultSet executeSelectSQL(String sql)
+	{
+		ResultSet rs = null;
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
+			Statement st = con.createStatement();
+			rs = st.executeQuery(sql);
+
+		}
+		catch (Exception E)
+		{
+			E.printStackTrace();
+		}
+		return rs;
+	}
+	
+	private ResultSet executeInsertSQL(String sql)
+	{
+		ResultSet rs = null;
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+		}
+		catch (Exception E)
+		{
+			E.printStackTrace();
+		}
+		return rs;
+	}
+	
+	private ResultSet executeDeleteSQL(String sql)
+	{
+		ResultSet rs = null;
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
 		}
 		catch (Exception E)
 		{
