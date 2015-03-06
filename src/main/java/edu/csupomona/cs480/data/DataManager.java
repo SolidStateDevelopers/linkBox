@@ -2,7 +2,6 @@ package edu.csupomona.cs480.data;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -208,7 +207,8 @@ public class DataManager {
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
+			//Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
+			Connection con = ConnectionManager.getConnection();
 			Statement st = con.createStatement();
 			rs = st.executeQuery(sql);
 
@@ -226,7 +226,8 @@ public class DataManager {
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
+			//Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
+			Connection con = ConnectionManager.getConnection();
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
 		}
@@ -243,7 +244,8 @@ public class DataManager {
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
+			//Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
+			Connection con = ConnectionManager.getConnection();
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
 		}
