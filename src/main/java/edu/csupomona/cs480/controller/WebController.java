@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.multipart.MultipartFile;
+import PingTest.PingTester;
 
 import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.data.DataManager;
@@ -79,7 +80,8 @@ public class WebController {
     	// You can replace this with other string,
     	// and run the application locally to check your changes
     	// with the URL: http://localhost:8080/
-        return "OK";
+        PingTester test = PingTester.getInstance();
+        return test.getPing();
     }
 	@RequestMapping(value = "/cs480/dhreply", method = RequestMethod.GET)
     String dhreply() 
