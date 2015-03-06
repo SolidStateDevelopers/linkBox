@@ -26,7 +26,7 @@ public class ConnectionManager
 	{
 		try
 		{
-			if(cm == null || con.isClosed())
+			if(cm == null || con.isValid(5))
 				cm = new ConnectionManager();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
