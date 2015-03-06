@@ -13,6 +13,14 @@ import java.util.ArrayList;
  */
 public class DataManager {
 
+	/**
+	 * Add a user to the MySQL database
+	 * @param userName The username the user will use to log into linkbox.
+	 * @param password The plaintext user password. This will be hashed before stored
+	 * @param firstName The user's first name.
+	 * @param lastName The user's last name.
+	 * @throws NoSuchAlgorithmException Exception that could occur while hashing the password
+	 */
 	public void addUser(String userName, String password, String firstName, String lastName) throws NoSuchAlgorithmException
 	{
 		PasswordManager passManager = new PasswordManager();
@@ -21,8 +29,15 @@ public class DataManager {
 		executeInsertSQL(sql);
 	}
 	
+	/** 
+	 * Add a link to the MySQL database
+	 * @param userName The user that wants to store this link.
+	 * @param newLink The actual URL that will be stored.
+	 * @param category The user-chosen category that the link will be stored under.
+	 */
 	public void addLink(String userName, String newLink, String category)
 	{
+		//Trim the 'http://' or 'https://' from the URL. This will keep the program from adding 'http://' twice later on.
 		if (newLink.substring(0, 7).equals("http://"))
 		{
 			newLink = newLink.substring(7, newLink.length());
@@ -35,6 +50,14 @@ public class DataManager {
 		executeInsertSQL(sql);
 	}
 	
+	/**
+	 * Check to see if the user logged in successfully. A successful login is determined by a 
+	 * matching userName and password.
+	 * @param userName The user trying to log in.
+	 * @param password The user's supposed password.
+	 * @return Successful log in. If the user and password don't match, it will return false.
+	 * @throws NoSuchAlgorithmException
+	 */
 	public boolean logInUser(String userName, String password) throws NoSuchAlgorithmException
 	{
 		boolean success = false;
@@ -43,10 +66,12 @@ public class DataManager {
 		String sql = "SELECT * FROM users WHERE userID = \"" + userName + "\" AND password = \"" + hashedPass + "\";";
 		ResultSet rs = executeSelectSQL(sql);
 		try {
+			//If there were no results, or the result set is null, the login failed.
 			if (rs == null || !rs.next())
 			{
 				success = false;
 			}
+			//Otherwise, it succeeded.
 			else 
 			{
 				success = true;
@@ -64,9 +89,18 @@ public class DataManager {
 		executeDeleteSQL(sql);
 	}
 	
+	/**
+	 * Retrieve the list of links that a user has saved. In addition, we sort the list before we return
+	 * it based on the sortType.
+	 * @param userName The user who's links we want to retrieve
+	 * @param sortType The sorting string. This determines how we want the list sorted before we return it. 
+	 * it has 4 potential options; 'Ascending', 'Descending', 'Oldest' and 'Newest'
+	 * @return The sorted list of SaveData objects, containing each link the user has.
+	 */
 	public ArrayList<SaveData> getLinks(String userName, String sortType)
 	{
 		String sql = "SELECT link, category, public, date_added FROM links WHERE userID = \"" + userName + "\""; 
+		//Tack on the appropriate sorting suffix.
 		switch (sortType)
 		{
 		case "Ascending":
@@ -95,6 +129,8 @@ public class DataManager {
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
 		{
+			//Loop through the result set and make a SaveData object for every link.
+			//Put those objects into a list that we'll return.
 			while(rs.next())
 			{
 				SaveData sd = new SaveData();
@@ -113,6 +149,7 @@ public class DataManager {
 		return ls;
 	}
 	
+	//Similar to above, this gets all the links that a user has determined to be public.
 	public ArrayList<SaveData> getPublicLinks(String userName)
 	{
 		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" AND public = 1 ORDER BY category, link ASC;";
@@ -138,6 +175,7 @@ public class DataManager {
 		return ls;
 	}
 	
+	//Same thing as up there but only by the category
 	public ArrayList<SaveData> getLinksByCategory(String userName, String category)
 	{
 		String sql = "SELECT link, category, public FROM links WHERE userID = \"" + userName + "\" and category = \"" + category + "\" ORDER BY category, link ASC;";
@@ -163,9 +201,10 @@ public class DataManager {
 		return ls;
 	}
 	
+	//Return all the categories that a user has on their records.
 	public ArrayList<SaveData> getCategories(String userName)
 	{
-		String sql = "SELECT DISTINCT category FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
+		String sql = "SELECT DISTINCT category FROM links WHERE userID = \"" + userName + "\" ORDER BY category ASC;";
 		ResultSet rs = executeSelectSQL(sql);
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try
@@ -233,15 +272,23 @@ public class DataManager {
 	}
 	*/
 	
+	/**
+	 * Creates a connection to the MySQL database and returns the result set of the 
+	 * query specified in the sql parameter.
+	 * @param sql The full SQL statement to be executed against the database.
+	 * @return The result set of the SQL statement given by the sql parameter.
+	 */
 	private ResultSet executeSelectSQL(String sql)
 	{
 		ResultSet rs = null;
 		try
 		{
+			//Create a connection to the MySQL database
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			//Connection con = DriverManager.getConnection("jdbc:mysql://cs480db.cyezs5priejv.us-west-2.rds.amazonaws.com:3306/cs480MySQL", "ec2user", "abcd1234");
 			Connection con = ConnectionManager.getConnection();
 			Statement st = con.createStatement();
+			//Then execute the SQL statement.
 			rs = st.executeQuery(sql);
 
 		}
@@ -252,9 +299,14 @@ public class DataManager {
 		return rs;
 	}
 	
-	private ResultSet executeInsertSQL(String sql)
+	/**
+	 * Creates a connection to the MySQL database to execute an INSERT or UPDATE query
+	 * given by the sql parameter.
+	 * @param sql The full SQL statement to be executed. Must be either an INSERT or UPDATE statement or
+	 * combination of statements.
+	 */
+	private void executeInsertSQL(String sql)
 	{
-		ResultSet rs = null;
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -267,12 +319,14 @@ public class DataManager {
 		{
 			E.printStackTrace();
 		}
-		return rs;
 	}
 	
-	private ResultSet executeDeleteSQL(String sql)
+	/**
+	 * Creates a connection to the MySQL database to execute a DELETE query.
+	 * @param sql The full SQL statement to be executed. Must be a DELETE statement.
+	 */
+	private void executeDeleteSQL(String sql)
 	{
-		ResultSet rs = null;
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -285,6 +339,5 @@ public class DataManager {
 		{
 			E.printStackTrace();
 		}
-		return rs;
 	}
 }
