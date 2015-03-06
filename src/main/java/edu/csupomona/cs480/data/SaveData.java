@@ -12,6 +12,7 @@ public class SaveData {
     private String id;
     private String bookmark;
     private String category;
+    private String dateAdded;
     private boolean isPublic;
     
     public void setId(String id)
@@ -26,6 +27,14 @@ public class SaveData {
     public String getBookmark()
     {
        return bookmark;
+    }
+    public void setDate(String date)
+    {
+    	dateAdded = date;
+    }
+    public String getDate()
+    {
+    	return dateAdded;
     }
     
     public String getCategory()
