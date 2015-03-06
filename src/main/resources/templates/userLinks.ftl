@@ -11,6 +11,15 @@
     <div>
         Simple skeleton where user can save links
     </div>
+   <div>
+      <td><select id="Sort By" onchange = "sortList()">
+      <option value = "0">    </option>
+      <option value = "1">Ascending</option>
+      <option value = "2">Descending</option>
+      <option value = "3">Oldest</option>
+      <option value = "4"> Newest</option>
+      </select></td>
+   </div>
 
     <hr>
 

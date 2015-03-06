@@ -196,3 +196,7 @@ function goToSettings() {
         alert("Please try again!");
     }
 }
+function sortList()
+{
+   var x = Document.getElementById("Sory By").selectedIndex;
+}
