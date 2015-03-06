@@ -56,9 +56,33 @@ public class DataManager {
 		executeDeleteSQL(sql);
 	}
 	
-	public ArrayList<SaveData> getLinks(String userName)
+	public ArrayList<SaveData> getLinks(String userName, String sortType)
 	{
-		String sql = "SELECT link, category, public, date_added FROM links WHERE userID = \"" + userName + "\" ORDER BY category, link ASC;";
+		String sql = "SELECT link, category, public, date_added FROM links WHERE userID = \"" + userName + "\""; 
+		switch (sortType)
+		{
+		case "Ascending":
+		{
+			sql += " ORDER BY link ASC;";
+			break;
+		}
+		case "Descending":
+		{
+			sql += " ORDER BY link DESC;";
+			break;
+		}
+		case "Oldest":
+		{
+			sql += " ORDER BY date_added ASC;";
+			break;
+		}
+		case "Newest":
+		{
+			sql += " ORDER BY date_added DESC;";
+			break;
+		}
+		}
+		
 		ResultSet rs = executeSelectSQL(sql);
 		ArrayList<SaveData> ls = new ArrayList<SaveData>();
 		try

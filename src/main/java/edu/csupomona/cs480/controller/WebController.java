@@ -122,7 +122,7 @@ public class WebController {
     	DataManager dm = new DataManager();
     	if (dm.logInUser(userId, password))
     	{
-    		ArrayList<SaveData> al = dm.getLinks(userId);
+    		ArrayList<SaveData> al = dm.getLinks(userId, "Ascending");
     		return al;
     	}
     	else
@@ -301,14 +301,20 @@ public class WebController {
                saveManager.updateData(data);
                */
                ModelAndView modelAndView = new ModelAndView("BookmarkController");
-               modelAndView.addObject("bookmarks", dm.getLinks(userId));
+               modelAndView.addObject("bookmarksAsc", dm.getLinks(userId, "Ascending"));
+               modelAndView.addObject("bookmarksDesc", dm.getLinks(userId, "Descending"));
+               modelAndView.addObject("bookmarksOldestFirst", dm.getLinks(userId, "Oldest"));
+               modelAndView.addObject("bookmaksNewestFirst", dm.getLinks(userId, "Newest"));
                return modelAndView;
             }
             catch(Exception e)
             {
                DataManager dm = new DataManager();
                ModelAndView modelAndView = new ModelAndView("Error");
-               modelAndView.addObject("bookmarks", dm.getLinks(userId));
+               modelAndView.addObject("bookmarksAsc", dm.getLinks(userId, "Ascending"));
+               modelAndView.addObject("bookmarksDesc", dm.getLinks(userId, "Descending"));
+               modelAndView.addObject("bookmarksOldestFirst", dm.getLinks(userId, "Oldest"));
+               modelAndView.addObject("bookmaksNewestFirst", dm.getLinks(userId, "Newest"));
                return modelAndView;
             }
          }
