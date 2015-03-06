@@ -301,7 +301,7 @@ public class WebController {
                saveManager.updateData(data);
                */
                ModelAndView modelAndView = new ModelAndView("BookmarkController");
-               modelAndView.addObject("bookmarksAsc", dm.getLinks(userId, "Ascending"));
+               modelAndView.addObject("bookmarks", dm.getLinks(userId, "Ascending"));
                modelAndView.addObject("bookmarksDesc", dm.getLinks(userId, "Descending"));
                modelAndView.addObject("bookmarksOldestFirst", dm.getLinks(userId, "Oldest"));
                modelAndView.addObject("bookmaksNewestFirst", dm.getLinks(userId, "Newest"));
@@ -311,7 +311,7 @@ public class WebController {
             {
                DataManager dm = new DataManager();
                ModelAndView modelAndView = new ModelAndView("Error");
-               modelAndView.addObject("bookmarksAsc", dm.getLinks(userId, "Ascending"));
+               modelAndView.addObject("bookmarks", dm.getLinks(userId, "Ascending"));
                modelAndView.addObject("bookmarksDesc", dm.getLinks(userId, "Descending"));
                modelAndView.addObject("bookmarksOldestFirst", dm.getLinks(userId, "Oldest"));
                modelAndView.addObject("bookmaksNewestFirst", dm.getLinks(userId, "Newest"));
