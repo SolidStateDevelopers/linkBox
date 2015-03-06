@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+/* 
+    Created on : Mar 6, 2015, 12:41:33 PM
+    Author     : curvejumper
+*/
+body {
+    background-color: white;
+}
+
+.banner{
+    background-color: #cee3f8;
+}
+/*anything you want to happen to EVERYTHING 
+about the link table*/
+.linkTable{
+    background-color:#09F;
+    text-align: center;
+    width: 10%;
+    height: 10%;
+}
+/*anything you want to happen to EVERYTHING about
+the category table*/
+.categoryTable {
+    background-color: #9CF0F0;
+    text-align: center;
+    width: 10%;
+    height: 10%;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: large;
+}
+
+.linkTable a:hover {
+    color: black;
+}
+
+.categoryTable td:hover {
+  border-style: solid;
+  border-color: black;  
+}

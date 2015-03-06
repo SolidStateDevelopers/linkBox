@@ -4,13 +4,14 @@
     <title>Link saver page</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>    
     <script src="/js/home-control.js"></script>
+    <link href="/css/accountStyle.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body onload="dragEvents()">    
     <div id = "target">
-    <div>
+    <div class="banner">
         Simple skeleton where user can save links
-    </div>
+    
    <div>
       <td><select id="Sort By" onchange = "sortList()">
       <option value = "0">    </option>
@@ -22,14 +23,14 @@
    </div>
 
     <hr>
-
+</div>
     <div>
         <div>
             <label>${category}</label>
         <div>
         <div>
                 <#list bookmarks as data>
-                        <table border="1" style="display: inline-block;">
+                        <table class="linkTable" style="display: inline-block;">
                             <tr>
                                     <td><a href = "http://${data.bookmark}">${data.bookmark}</a></td> 
                                 </tr>
