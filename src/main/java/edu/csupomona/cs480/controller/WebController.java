@@ -264,6 +264,7 @@ public class WebController {
         DataManager dm = new DataManager();
         
         ModelAndView modelAndView = new ModelAndView("userLinks");
+        modelAndView.addObject("category", category);
         modelAndView.addObject("bookmarks", dm.getLinksByCategory(userId, category));
         return modelAndView;
     }
