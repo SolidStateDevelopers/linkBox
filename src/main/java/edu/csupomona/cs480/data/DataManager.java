@@ -23,6 +23,14 @@ public class DataManager {
 	
 	public void addLink(String userName, String newLink, String category)
 	{
+		if (newLink.substring(0, 7).equals("http://"))
+		{
+			newLink = newLink.substring(7, newLink.length());
+		}
+		else if (newLink.substring(0, 8).equals("https://"))
+		{
+			newLink = newLink.substring(8, newLink.length());
+		}
 		String sql = "INSERT INTO links (userID, link, category, date_added) VALUES (\"" + userName + "\", \"" + newLink + "\", \"" + category + "\", NOW());";
 		executeInsertSQL(sql);
 	}
