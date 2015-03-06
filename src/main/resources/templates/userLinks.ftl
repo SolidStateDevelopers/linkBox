@@ -16,7 +16,7 @@
 
     <div>
         <div>
-            <label>Bookmark Lists</label>
+            <label>${category}</label>
         <div>
         <div>
                 <#list bookmarks as data>
