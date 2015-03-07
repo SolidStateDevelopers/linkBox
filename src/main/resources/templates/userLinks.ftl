@@ -26,17 +26,16 @@
 </div>
     <div>
         <div>
-            <label>${category}</label>
+            <label id="categoryName">${category}</label>
+        </div>
         <div>
-        <div>
-                <#list bookmarks as data>
-                        <table class="linkTable" style="display: inline-block;">
-                            <tr>
-                                    <td><a href = "http://${data.bookmark}">${data.bookmark}</a></td> 
-                                </tr>
-                        </table>
-                </#list>
-            
+            <#list bookmarks as data>
+                <table class="linkTable" style="display: inline-block;">
+                    <tr>
+                        <td><a href = "http://${data.bookmark}">${data.bookmark}</a></td> 
+                    </tr>
+                </table>
+            </#list>
         </div>
         
         <hr>
@@ -59,7 +58,6 @@
 
         <hr>
 
-    </div>
     </div>
     
 </body>

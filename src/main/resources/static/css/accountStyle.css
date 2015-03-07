@@ -18,6 +18,7 @@ about the link table*/
     text-align: center;
     width: 10%;
     height: 10%;
+    vertical-align: top
 }
 /*anything you want to happen to EVERYTHING about
 the category table*/
@@ -26,6 +27,7 @@ the category table*/
     text-align: center;
     width: 10%;
     height: 10%;
+    vertical-align: top;
 }
 
 a {
@@ -34,11 +36,14 @@ a {
     font-size: large;
 }
 
-.linkTable a:hover {
+a:hover {
     color: black;
 }
 
-.categoryTable td:hover {
-  border-style: solid;
-  border-color: black;  
+.categoryTable table:hover {
+}
+
+.dragover tbody{
+    border-style: solid;
+    border-color: black;
 }

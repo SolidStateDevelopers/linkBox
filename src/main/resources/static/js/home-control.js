@@ -121,14 +121,60 @@ function addBookmark(presentCategory) {
 //document elements
 function dragEvents() {
 // target events
-    var target = document.getElementById('target');
-    target.addEventListener('dragover', function(e) {
+    var categories = document.getElementsByClassName('categoryTable');
+    //this for loop will add drag events to the tables specifically. 
+    //that way they can just drag into a category without typing it out
+    for(var i=0; i < categories.length; i++){
+        categories[i].addEventListener('dragover', function(e) {
+            e.preventDefault();
+            return false;
+        });
+//doesn't work fully yet 
+        categories[i].addEventListener('dragenter', function(e) {
+            e.target.classList.add("dragover");
+        });
+
+        // we want to call this from dragleave and drop
+        function onLeave(e) {
+            e.target.classList.remove("dragover");
+        }
+
+        categories[i].addEventListener('dragleave', onLeave);
+
+        categories[i].addEventListener('drop', function(e) {
+            // don't let the browser switch to an image!
+            e.preventDefault();
+            onLeave(e);
+            var category = categories[i].getElementById('categoryLink').innerHTML;
+            var userId = localStorage.getItem("userName");
+            var bookmark = e.dataTransfer.getData('Text');
+
+            if (category !== null) {
+                    $.ajax(
+                                    {
+                                            type : "POST",
+                                            url  : "/cs480/BookmarkController/" + userId,
+                                            data : {
+                                                    "User ID":  userId,
+                                                    "Bookmark": bookmark,
+                                                    "Category": category                      
+                                            },
+                                            success : function(result) {
+                                                    location.reload();
+                                            },
+                                            error: function (jqXHR, exception) {
+                                                    alert("Couldn't save link.");
+                                            }
+                                    });
+            } else {
+                    alert("Could not save link");
+            }
+            });
+    }
+    
+    document.addEventListener('dragover', function(e) {
         e.preventDefault();
         return false;
-    });
-
-    target.addEventListener('dragenter', function(e) {
-        e.target.classList.add("dragover");
     });
 
     // we want to call this from dragleave and drop
@@ -136,22 +182,26 @@ function dragEvents() {
         e.target.classList.remove("dragover");
     }
 
-    target.addEventListener('dragleave', onLeave);
+    document.addEventListener('dragleave', onLeave);
 
-    target.addEventListener('drop', function(e) {
+    document.addEventListener('drop', function(e) {
         // don't let the browser switch to an image!
         e.preventDefault();
         onLeave(e);
-        
-        var category = window.prompt("Which category do you want this link in?", "Default");
+        var category;
+        if(document.getElementById('categoryName')){
+            category = document.getElementById('categoryName').innerHTML;
+        } else {
+            category = window.prompt("Which category do you want this link in?", "Default");
+        }
         var userId = localStorage.getItem("userName");
         var bookmark = e.dataTransfer.getData('Text');
         
-        if (category != null) {
+        if (category !== null) {
 		$.ajax(
 				{
 					type : "POST",
-					url  : "/cs480/ControlPanel/" + userId,
+					url  : "/cs480/BookmarkController/" + userId,
 					data : {
                                                 "User ID":  userId,
                                                 "Bookmark": bookmark,
@@ -167,6 +217,9 @@ function dragEvents() {
 	} else {
 		alert("Could not save link");
 	}
+        
+        
+        
 		//get the text of the url, set it to <a> and place it into the target div
 //		var urlText = e.dataTransfer.getData('Text');
 //		var url = document.createElement("a");
@@ -178,7 +231,7 @@ function dragEvents() {
 }
 
 function goToSettings() {
-    var userName = localStorage.getItem("userName")
+    var userName = localStorage.getItem("userName");
     if (userName) {
         $.ajax(
                 {
