@@ -249,7 +249,82 @@ function goToSettings() {
         alert("Please try again!");
     }
 }
-function sortList()
+
+
+
+function sortList(presentCategory)
 {
-   var x = Document.getElementById("Sory By").selectedIndex;
+   var category = presentCategory;
+   var userName = localStorage.getItem("userName");
+   var x = document.getElementById("Sort").selectedIndex; // holds the index values
+   var y = document.getElementsByTagName("option")[x].value //holds the value at the index in the dropdown menu
+   //alert(x.selectedIndex);
+   //var category = presentCategory;
+   //var userName = localStorage.getItem("userName");
+   //var x = document.getElementById("Sort");
+   //alert(x);
+   //alert(y);
+   if (x == 1) //Ascending
+   {
+      $.ajax(
+              {
+                 data: {
+                    
+                 },
+                 success: function(result){
+                    window.open("/cs480/BookmarkController/" + userName + "/" + category + "/" + y, "_self");
+                 },
+                 error: function(jqXHR, exception) {
+                    alert("Error")
+                 }
+              });
+      
+   } 
+   else if (x == 2) //Descending
+   {
+      $.ajax(
+              {
+                 data: {
+                    
+                 },
+                 success: function(result){
+                    window.open("/cs480/BookmarkController/" + userName + "/" + category + "/" + y, "_self");
+                 },
+                 error: function(jqXHR, exception) {
+                    alert("Error")
+                 }
+              });
+      
+   } 
+   else if (x == 3) // Oldest 
+   {
+      $.ajax(
+              {
+                 data: {
+                    
+                 },
+                 success: function(result){
+                    window.open("/cs480/BookmarkController/" + userName + "/" + category + "/" + y, "_self");
+                 },
+                 error: function(jqXHR, exception) {
+                    alert("Error")
+                 }
+              });    
+   } 
+   else if (x == 4) //Newest 
+   {
+      $.ajax(
+              {
+                 data: {
+                    
+                 },
+                 success: function(result){
+                    window.open("/cs480/BookmarkController/" + userName + "/" + category + "/" + y, "_self");
+                 },
+                 error: function(jqXHR, exception) {
+                    alert("Error")
+                 }
+              });
+   }
+   
 }

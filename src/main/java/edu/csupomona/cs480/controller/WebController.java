@@ -259,6 +259,18 @@ public class WebController {
        return saveManager.listAllData();
     }
     
+    @RequestMapping(value = "/cs480/BookmarkController/{userId}/{category}/{order}", method = RequestMethod.GET)
+    ModelAndView getSortedPage(@PathVariable("userId") String userId, @PathVariable("category") String category, @PathVariable("order") String order) {
+        DataManager dm = new DataManager();
+        
+        ModelAndView modelAndView = new ModelAndView("sortedUserLinks");
+        modelAndView.addObject("category", category);
+        modelAndView.addObject("bookmarks", dm.getLinks(userId, order));
+        return modelAndView;
+    }
+
+    
+    
     @RequestMapping(value = "/cs480/BookmarkController/{userId}/{category}", method = RequestMethod.GET)
     ModelAndView getBookmarkPage(@PathVariable("userId") String userId, @PathVariable("category") String category) {
         DataManager dm = new DataManager();
