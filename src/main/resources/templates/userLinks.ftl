@@ -14,10 +14,10 @@ nav {
     height:700px;
     width:130px;
     float:left;
-    padding:5px;	    
+    padding:5px;
 }
 section {
-    width:1900px;
+    width:80%;
     float:left;
     padding:10px;
 }
@@ -52,6 +52,7 @@ Sort By: <br>
 <a href = "${category}/Oldest" target = "_self">Oldest</a>
 <a href = "${category}/Newest" target = "_self">Newest</a>
 </nav>
+
 
 <section>
    <div>
@@ -98,7 +99,6 @@ Sort By: <br>
 
 
 </section>
-
 
 
 </body>
