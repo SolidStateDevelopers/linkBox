@@ -89,6 +89,12 @@ public class DataManager {
 		executeDeleteSQL(sql);
 	}
 	
+	public void deleteCategory(String userName, String category)
+	{
+		String sql = "DELETE FROM links WHERE userID = \"" + userName + "\" AND category = \"" + category + "\";";
+		executeDeleteSQL(sql);
+	}
+	
 	/**
 	 * Retrieve the list of links that a user has saved. In addition, we sort the list before we return
 	 * it based on the sortType.
