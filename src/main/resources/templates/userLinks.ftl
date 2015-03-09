@@ -59,11 +59,11 @@ Sort By: <br>
 
         
         <div>
-            <label id="categoryName">${category}</label>
+            <label id="categoryName">${category} links</label>
         </div>
         <div>
             <#list bookmarks as data>
-                <table class="linkTable" style="display: inline-block;">
+                    <table class="linkTable" style="display: inline-block;">
                     <tr>
                         <td><a href = "http://${data.bookmark}">${data.bookmark}</a></td> 
                     </tr>

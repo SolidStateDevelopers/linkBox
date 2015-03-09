@@ -1,6 +1,35 @@
 <html>
 
 <head>
+<style>
+header {
+    background-color:#09F;
+    color:white;
+    text-align:center;
+    padding:5px;	 
+}
+nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:700px;
+    width:130px;
+    float:left;
+    padding:5px;
+}
+section {
+    width:80%;
+    float:left;
+    padding:10px;
+}
+footer {
+    background-color:#09F;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+
+</style>
     <title>Link saver page</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>    
     <script src="/js/home-control.js"></script>
@@ -9,27 +38,28 @@
 
 <body onload="dragEvents()">    
     <div id = "target">
-    <div class="banner">
-        Simple skeleton where user can save links
-            <td><button onclick ="deleteLink()">Delete Link</button></td>
-    
-   <div>
-      <td><select id="Sort" onchange = "sortList('${category}')">
-      <option>    </option>
-      <option value = "Ascending">Ascending</option>
-      <option value = "Descending">Descending</option>
-      <option value = "Oldest">Oldest</option>
-      <option value = "Newest">Newest</option>
-      </select></td>
-   </div>
 
-    <hr>
-</div>
-    <div>
+<header>
+<h1>${category} Bookmark Page</h1>
+ <td><button onclick ="deleteLink()">Delete Link</button></td>
+ <td><button onclick = "goToHome()">Back To Home</button></td>
+</header>
+
+<nav>
+Sort By: <br>
+<td><a href = "http://localhost:8080/cs480/BookmarkController/${userId}/${category}/Ascending" target = "_self">Ascending</a></td>
+<td><a href = "http://localhost:8080/cs480/BookmarkController/${userId}/${category}/Descending" target = "_self">Descending</a></td>
+<td><a href = "http://localhost:8080/cs480/BookmarkController/${userId}/${category}/Oldest" target = "_self">Oldest</a></td>
+<td><a href = "http://localhost:8080/cs480/BookmarkController/${userId}/${category}/Newest" target = "_self">Newest</a></td>
+</nav>
+
+
+<section>
+   <div>
 
         
         <div>
-            <label id="categoryName">${category}</label>
+            <label id="categoryName">${category} links</label>
         </div>
         <div>
             <#list bookmarks as data>
@@ -47,7 +77,7 @@
         <hr>
 
         <div>
-            <label>Add URL</label>
+            <label>Add URL </label>
             <table border="1" align = "center">
                 <tr>
                     <td>Category</td>
@@ -65,7 +95,11 @@
         <hr>
 
     </div>
-    
-</body>
 
+
+
+</section>
+
+
+</body>
 </html>

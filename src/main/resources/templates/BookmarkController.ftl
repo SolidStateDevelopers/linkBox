@@ -1,6 +1,16 @@
 <html>
 
+
 <head>
+<style>
+header {
+    background-color: #cee3f8;
+    color:white;
+    text-align:center;
+    padding:5px;	 
+}
+
+</style>
     <title>Link saver page</title>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>    
     <script src="/js/home-control.js"></script>
@@ -9,9 +19,10 @@
 
 <body onload="dragEvents()">    
     <div id = "target">
-        <div class="banner">
-            <p>${userId} Home Page</p>
-        </div>
+       
+<header>
+<h1>${userId} Home Page</h1>
+</header>
 
 <hr>
 
