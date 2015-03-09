@@ -11,15 +11,15 @@ header {
 nav {
     line-height:30px;
     background-color:#eeeeee;
-    height:700px;
-    width:90px;
+    height:100%;
+    width:6%;
     float:left;
     padding:5px;
 }
 section {
     width:80%;
     float:left;
-    padding:10px;
+    padding:50px;
 }
 footer {
     background-color:#09F;

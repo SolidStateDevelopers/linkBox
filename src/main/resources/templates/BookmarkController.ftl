@@ -21,7 +21,9 @@ header {
     <div id = "target">
        
 <header>
+<a id ='logout' href = "/index.html"> log out </a>
 <h1>${userId} Home Page</h1>
+
 </header>
 
 <hr>
@@ -40,8 +42,8 @@ header {
                             <td></td> 
                         </tr>
                         <tr>
-                            <td colspan = '2'><button onclick="addBookmark('${data.category}')">Add Link</button></td>
-                            <td colspan = '3'><button style="background-color: palevioletred" onclick ="deleteCategory('${data.category}')">Remove Folder</button></td> 
+                            <td colspan = '2'><button id = 'sexybuttons' onclick="addBookmark('${data.category}')">Add Link</button></td>
+                            <td colspan = '3'><button id = 'sexybuttons' style="background-color: palevioletred" onclick ="deleteCategory('${data.category}')">Remove Folder</button></td> 
                         </tr>
                     </table>
                 </#list> 

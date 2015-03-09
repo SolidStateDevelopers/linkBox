@@ -33,6 +33,20 @@ the category table*/
     vertical-align: top;
 }
 
+#sexybuttons {
+    background-color: white;
+}
+
+a#logout {
+    float: right;
+    text-decoration: none;
+    color: white;
+}
+
+a:hover#logout {
+    color: black;
+}
+
 a#categoryLink {
     text-decoration: none;
     color: white;
