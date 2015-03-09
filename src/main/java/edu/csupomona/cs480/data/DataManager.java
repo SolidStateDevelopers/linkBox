@@ -175,6 +175,58 @@ public class DataManager {
 		return ls;
 	}
 	
+	public ArrayList<SaveData> getSortedLinks(String userName, String category, String sortType)
+	{
+		String sql = "SELECT link, category, public, date_added FROM links WHERE userID = \"" + userName + "\" and category = \"" + category + "\""; 
+		//Tack on the appropriate sorting suffix.
+		switch (sortType)
+		{
+		case "Ascending":
+		{
+			sql += " ORDER BY link ASC;";
+			break;
+		}
+		case "Descending":
+		{
+			sql += " ORDER BY link DESC;";
+			break;
+		}
+		case "Oldest":
+		{
+			sql += " ORDER BY date_added ASC;";
+			break;
+		}
+		case "Newest":
+		{
+			sql += " ORDER BY date_added DESC;";
+			break;
+		}
+		}
+		
+		ResultSet rs = executeSelectSQL(sql);
+		ArrayList<SaveData> ls = new ArrayList<SaveData>();
+		try
+		{
+			//Loop through the result set and make a SaveData object for every link.
+			//Put those objects into a list that we'll return.
+			while(rs.next())
+			{
+				SaveData sd = new SaveData();
+				sd.setBookmark(rs.getString("link"));
+				sd.setCategory(rs.getString("category"));
+				sd.setId(userName);
+				sd.setPublic(rs.getBoolean("public"));
+				sd.setDate(rs.getString("date_added"));
+				ls.add(sd);
+			}
+		}
+		catch(Exception E)
+		{
+			E.printStackTrace();
+		}
+		return ls;
+	}
+	
 	//Same thing as up there but only by the category
 	public ArrayList<SaveData> getLinksByCategory(String userName, String category)
 	{
