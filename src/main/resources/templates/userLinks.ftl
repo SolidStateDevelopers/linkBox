@@ -35,6 +35,9 @@
                     <tr>
                         <td><a href = "http://${data.bookmark}">${data.bookmark}</a></td> 
                     </tr>
+                    <tr>
+                        <td><button onclick ="deleteLink('${data.bookmark}')">Remove</button></td> 
+                    </tr>
                 </table>
             </#list>
         </div>

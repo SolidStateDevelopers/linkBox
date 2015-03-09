@@ -215,14 +215,12 @@ public class WebController {
     	userManager.deleteUser(userId);
     }
     
-    @RequestMapping(value ="/user/{userId}/{link}", method = RequestMethod.DELETE)
+    @RequestMapping(value ="/user/deleteBookmark/{userId}", method = RequestMethod.POST)
     void deleteBookmark(
-         @PathVariable("userId") String userId, @PathVariable("link") String link) {
+         @PathVariable("userId") String userId, @RequestParam("bookmark") String link) {
          DataManager dm = new DataManager();
-         
          System.out.println(userId + " " + link);
          dm.deleteLink(userId, link);
-     
     }
     /**
      * This API lists all the users in the current database.

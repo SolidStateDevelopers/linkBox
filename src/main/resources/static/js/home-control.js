@@ -82,23 +82,28 @@ function getUser(userId) {
 	}
 }
 
-function deleteLink() {
+function deleteLink(bookmark) {
    var userName = localStorage.getItem("userName");
-   var link = window.prompt("Type your url here to delete");
-   
+   var link;
+   if(bookmark){
+       link = bookmark;
+   } else {
+        link = window.prompt("Type your url here to delete");
+   }
+   console.log(link);
 	$.ajax(
 			{
-				type : "DELETE",
-				url  : "/user/" + userName + "/" + link,
+				type : "POST",
+				url  : "/user/deleteBookmark/" + userName,
 				data : {
+                                    "bookmark" : link
 				},
 				success : function(result) {
-               alert("Link has been deleted");
-               alert(link);
-					location.reload();
+                                    alert(link + " Link has been deleted");
+                                    location.reload();
 				},
 				error: function (jqXHR, exception) {
-					alert("Failed to delete the bookmark.");
+                                    alert("Failed to delete the bookmark.");
 				}
 			});
 }
