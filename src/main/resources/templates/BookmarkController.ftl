@@ -11,6 +11,7 @@
     <div id = "target">
         <div class="banner">
             <p>Simple skeleton where user can save links</p>
+            <td><button onclick ="deleteLink()">Delete Link</button></td>
         </div>
 
 <hr>

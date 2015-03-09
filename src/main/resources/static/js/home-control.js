@@ -81,6 +81,28 @@ function getUser(userId) {
 		alert("Invalid user Id");
 	}
 }
+
+function deleteLink() {
+   var userName = localStorage.getItem("userName");
+   var link = window.prompt("Type your url here to delete");
+   
+	$.ajax(
+			{
+				type : "DELETE",
+				url  : "/user/" + userName + "/" + link,
+				data : {
+				},
+				success : function(result) {
+               alert("Link has been deleted");
+               alert(link);
+					location.reload();
+				},
+				error: function (jqXHR, exception) {
+					alert("Failed to delete the bookmark.");
+				}
+			});
+}
+
 function addBookmark(presentCategory) {
     var category, bookmark;
     if(presentCategory){

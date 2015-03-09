@@ -214,7 +214,16 @@ public class WebController {
     		@PathVariable("userId") String userId) {
     	userManager.deleteUser(userId);
     }
-
+    
+    @RequestMapping(value ="/user/{userId}/{link}", method = RequestMethod.DELETE)
+    void deleteBookmark(
+         @PathVariable("userId") String userId, @PathVariable("link") String link) {
+         DataManager dm = new DataManager();
+         
+         System.out.println(userId + " " + link);
+         dm.deleteLink(userId, link);
+     
+    }
     /**
      * This API lists all the users in the current database.
      *
@@ -265,7 +274,7 @@ public class WebController {
         
         ModelAndView modelAndView = new ModelAndView("sortedUserLinks");
         modelAndView.addObject("category", category);
-        modelAndView.addObject("bookmarks", dm.getLinks(userId, order));
+        modelAndView.addObject("bookmarks", dm.getSortedLinks(userId, category, order));
         return modelAndView;
     }
 
