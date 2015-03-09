@@ -108,6 +108,36 @@ function deleteLink(bookmark) {
 			});
 }
 
+function deleteCategory(folder) {
+   if(confirm("Are you sure you want to delete?\nThis will remove all links and the category")){
+   var userName = localStorage.getItem("userName");
+   var category;
+   if(folder){
+       category = folder;
+   } else {
+        category = window.prompt("Type your category here to delete");
+   }
+   console.log(category);
+	$.ajax(
+			{
+				type : "POST",
+				url  : "/user/deleteCategory/" + userName,
+				data : {
+                                    "category" : category
+				},
+				success : function(result) {
+                                    alert(link + " Link has been deleted");
+                                    location.reload(true);
+				},
+				error: function (jqXHR, exception) {
+                                    alert("Failed to delete the bookmark.");
+				}
+			});
+    } else {
+                        
+    }
+}
+
 function addBookmark(presentCategory) {
     var category, bookmark;
     if(presentCategory){

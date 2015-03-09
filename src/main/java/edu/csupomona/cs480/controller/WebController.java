@@ -222,6 +222,14 @@ public class WebController {
          System.out.println(userId + " " + link);
          dm.deleteLink(userId, link);
     }
+    
+    @RequestMapping(value ="/user/deleteCategory/{userId}", method = RequestMethod.POST)
+    void deleteCategory(
+         @PathVariable("userId") String userId, @RequestParam("category") String category) {
+         DataManager dm = new DataManager();
+         System.out.println(userId + " " + category);
+         dm.deleteCategory(userId, category);
+    }
     /**
      * This API lists all the users in the current database.
      *

@@ -11,8 +11,6 @@
     <div id = "target">
     <div class="banner">
         Simple skeleton where user can save links
-            <td><button onclick ="deleteLink()">Delete Link</button></td>
-    
    <div>
       <td><select id="Sort" onchange = "sortList('${category}')">
       <option>    </option>

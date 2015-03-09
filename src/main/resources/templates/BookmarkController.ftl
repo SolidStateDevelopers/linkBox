@@ -11,7 +11,6 @@
     <div id = "target">
         <div class="banner">
             <p>Simple skeleton where user can save links</p>
-            <td><button onclick ="deleteLink()">Delete Link</button></td>
         </div>
 
 <hr>
@@ -25,7 +24,11 @@
                     <table class="categoryTable" style="display: inline-block;">
                         <tr>
                             <td><a id='categoryLink' href="/cs480/BookmarkController/${data.id}/${data.category}">${data.category}</a></td>
-                            <td><button onclick="addBookmark('${data.category}')">Add</button></td> 
+                            <td colspan = '2'><button onclick="addBookmark('${data.category}')">Add Link</button></td>
+                            <td></td> 
+                        </tr>
+                        <tr>
+                            <td colspan = '3'><button style="background-color: palevioletred" onclick ="deleteCategory('${data.category}')">Remove Folder</button></td> 
                         </tr>
                     </table>
                 </#list> 
