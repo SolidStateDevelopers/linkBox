@@ -12,7 +12,7 @@ nav {
     line-height:30px;
     background-color:#eeeeee;
     height:700px;
-    width:130px;
+    width:90px;
     float:left;
     padding:5px;
 }
@@ -65,7 +65,7 @@ Sort By: <br>
             <#list bookmarks as data>
                 <table class="linkTable" style="display: inline-block;">
                     <tr>
-                        <td><a href = "http://${data.bookmark}">${data.bookmark}</a></td> 
+                        <td><a id="categoryLink" href = "http://${data.bookmark}">${data.bookmark}</a></td> 
                     </tr>
                     <tr>
                         <td><button onclick ="deleteLink('${data.bookmark}')">Remove</button></td> 

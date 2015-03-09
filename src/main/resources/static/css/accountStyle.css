@@ -26,20 +26,20 @@ about the link table*/
 /*anything you want to happen to EVERYTHING about
 the category table*/
 .categoryTable {
-    background-color: #9CF0F0;
+    background-color: #09F;
     text-align: center;
     width: 10%;
     height: 10%;
     vertical-align: top;
 }
 
-a {
+a#categoryLink {
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: large;
 }
 
-a:hover {
+a:hover#categoryLink {
     color: black;
 }
 
