@@ -57,49 +57,9 @@ public class WebController {
     
     @Autowired
     private SaveManager saveManager;
-
-    
-    /**
-     * My test HTTP API @curvejumper(michael ortiz)
-     **/
-    @RequestMapping(value = "/curvejumper", method = RequestMethod.GET)
-    String curveCheck() {
-    	return "Hey, it's Michael!";
-    }
     
     
-    /**
-     * This is a simple example of how the HTTP API works.
-     * It returns a String "OK" in the HTTP response.
-     * To try it, run the web application locally,
-     * in your web browser, type the link:
-     * 	http://localhost:8080/cs480/ping
-     */
-    @RequestMapping(value = "/cs480/ping", method = RequestMethod.GET)
-    String healthCheck() {
-    	// You can replace this with other string,
-    	// and run the application locally to check your changes
-    	// with the URL: http://localhost:8080/
-        PingTester test = PingTester.getInstance();
-        return test.getPing();
-    }
-	@RequestMapping(value = "/cs480/dhreply", method = RequestMethod.GET)
-    String dhreply() 
-	{
-        return "David Ho's webpage";
-    }
-    @RequestMapping(value = "/cs480/dalin1120", method = RequestMethod.GET)
-    String tester()
-    {
-       return "Daniel Lin has edited this";
-    }
     
-    @RequestMapping(value = "/cs480/tjmadison", method = RequestMethod.GET)
-    String tjmadsionRep()
-    {
-       return "Better late than never";
-    }
-
     /**
      * This is a simple example of how to use a data manager
      * to retrieve the data and return it as an HTTP response.
@@ -240,24 +200,7 @@ public class WebController {
     	return userManager.listAllUsers();
     }
     
-    @RequestMapping(value = "/cs480/dalin1120guava", method = RequestMethod.GET)
-    String guavaTestMethod()
-    {
-       Stopwatch watchTester = Stopwatch.createStarted();
-       return "Hello, the timer has been initialized but not started.";
-       
-    }
-    /*********** Web UI Test Utility **********/
-    /**
-     * This method provide a simple web UI for you to test the different
-     * functionalities used in this web service.
-     */
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    ModelAndView getUserHomepage() {
-        ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("users", listAllUsers());
-        return modelAndView;
-    }
+    
 
     @RequestMapping(value = "/public/{userId}", method = RequestMethod.GET)
     ModelAndView getPublicLinks(@PathVariable("userId") String userId) {

@@ -181,53 +181,6 @@ function dragEvents() {
     var categories = document.getElementsByClassName('categoryTable');
     //this for loop will add drag events to the tables specifically. 
     //that way they can just drag into a category without typing it out
-    for(var i=0; i < categories.length; i++){
-        categories[i].addEventListener('dragover', function(e) {
-            e.preventDefault();
-            return false;
-        });
-//doesn't work fully yet 
-        categories[i].addEventListener('dragenter', function(e) {
-            e.target.classList.add("dragover");
-        });
-
-        // we want to call this from dragleave and drop
-        function onLeave(e) {
-            e.target.classList.remove("dragover");
-        }
-
-        categories[i].addEventListener('dragleave', onLeave);
-
-        categories[i].addEventListener('drop', function(e) {
-            // don't let the browser switch to an image!
-            e.preventDefault();
-            onLeave(e);
-            var category = categories[i].getElementById('categoryLink').innerHTML;
-            var userId = localStorage.getItem("userName");
-            var bookmark = e.dataTransfer.getData('Text');
-
-            if (category !== null) {
-                    $.ajax(
-                                    {
-                                            type : "POST",
-                                            url  : "/cs480/BookmarkController/" + userId,
-                                            data : {
-                                                    "User ID":  userId,
-                                                    "Bookmark": bookmark,
-                                                    "Category": category                      
-                                            },
-                                            success : function(result) {
-                                                    location.reload();
-                                            },
-                                            error: function (jqXHR, exception) {
-                                                    alert("Couldn't save link.");
-                                            }
-                                    });
-            } else {
-                    alert("Could not save link");
-            }
-            });
-    }
     
     document.addEventListener('dragover', function(e) {
         e.preventDefault();
