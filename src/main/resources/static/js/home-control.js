@@ -126,7 +126,7 @@ function deleteCategory(folder) {
                                     "category" : category
 				},
 				success : function(result) {
-                                    alert(link + " Link has been deleted");
+                                    alert(category + "\n Link has been deleted");
                                     location.reload(true);
 				},
 				error: function (jqXHR, exception) {
@@ -136,6 +136,7 @@ function deleteCategory(folder) {
     } else {
                         
     }
+    location.reload();
 }
 
 function addBookmark(presentCategory) {
