@@ -26,6 +26,8 @@
     <hr>
 </div>
     <div>
+
+        
         <div>
             <label id="categoryName">${category}</label>
         </div>
@@ -35,15 +37,18 @@
                     <tr>
                         <td><a href = "http://${data.bookmark}">${data.bookmark}</a></td> 
                     </tr>
+                    <tr>
+                        <td><button onclick ="deleteLink('${data.bookmark}')">Remove</button></td> 
+                    </tr>
                 </table>
             </#list>
         </div>
         
         <hr>
-        
+
         <div>
             <label>Add URL</label>
-            <table border="1">
+            <table border="1" align = "center">
                 <tr>
                     <td>Category</td>
                     <td>URL</td>                     

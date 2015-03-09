@@ -339,3 +339,24 @@ function sortList(presentCategory)
    }
    
 }
+
+
+function goToHome() {
+    var userName = localStorage.getItem("userName");
+    if (userName) {
+        $.ajax(
+                {
+                    data: {
+                    },
+                    success: function (result) {
+                        //can open links to the localhost!
+                        window.open("/cs480/BookmarkController/"+ userName, "_self");
+                    },
+                    error: function (jqXHR, exception) {
+                        alert("Could not go to home");
+                    }
+                });
+    } else {
+        alert("Please try again!");
+    }
+}

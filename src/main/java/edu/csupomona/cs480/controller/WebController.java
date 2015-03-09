@@ -68,7 +68,7 @@ public class WebController {
      * automatically converted to JSON format.
      * <p>
      * Try it in your web browser:
-     * 	http://localhost:8080/cs480/user/user101
+      * 	http://localhost:8080/cs480/user/user101
      */
     @RequestMapping(value = "/user/{userId}/{password}", method = RequestMethod.GET)
     ArrayList<SaveData> getUser(@PathVariable("userId") String userId, @PathVariable("password") String password) throws NoSuchAlgorithmException {

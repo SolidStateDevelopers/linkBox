@@ -10,13 +10,16 @@ body {
 
 .banner{
     background-color: #cee3f8;
+    color: white;
+    text-align: center;
+    padding:5px;
 }
 /*anything you want to happen to EVERYTHING 
 about the link table*/
 .linkTable{
     background-color:#09F;
     text-align: center;
-    width: 10%;
+    width: 15%;
     height: 10%;
     vertical-align: top
 }
