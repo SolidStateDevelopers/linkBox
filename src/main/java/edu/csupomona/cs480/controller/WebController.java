@@ -221,7 +221,7 @@ public class WebController {
     ModelAndView getSortedPage(@PathVariable("userId") String userId, @PathVariable("category") String category, @PathVariable("order") String order) {
         DataManager dm = new DataManager();
         
-        ModelAndView modelAndView = new ModelAndView("userLinks");
+        ModelAndView modelAndView = new ModelAndView("sortedUserLinks");
         modelAndView.addObject("category", category);
         modelAndView.addObject("bookmarks", dm.getSortedLinks(userId, category, order));
         return modelAndView;

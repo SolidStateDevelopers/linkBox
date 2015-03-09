@@ -36,7 +36,7 @@ header {
                 <#list bookmarks as data>
                     <table class="categoryTable" style="display: inline-block;">
                         <tr>
-                            <td><a id='categoryLink' href="/cs480/BookmarkController/${data.id}/${data.category}">${data.category}</a></td>
+                            <td colspan = '2'><a id='categoryLink' href="/cs480/BookmarkController/${data.id}/${data.category}">${data.category}</a></td>
                             <td></td> 
                         </tr>
                         <tr>
