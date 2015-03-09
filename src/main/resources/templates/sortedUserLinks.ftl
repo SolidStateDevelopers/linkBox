@@ -47,10 +47,10 @@ footer {
 
 <nav>
 Sort By: <br>
-<td><a href = "http://localhost:8080/cs480/BookmarkController/${userId}/${category}/Ascending" target = "_self">Ascending</a></td>
-<td><a href = "http://localhost:8080/cs480/BookmarkController/${userId}/${category}/Descending" target = "_self">Descending</a></td>
-<td><a href = "http://localhost:8080/cs480/BookmarkController/${userId}/${category}/Oldest" target = "_self">Oldest</a></td>
-<td><a href = "http://localhost:8080/cs480/BookmarkController/${userId}/${category}/Newest" target = "_self">Newest</a></td>
+<td><a href = "/cs480/BookmarkController/${userId}/${category}/Ascending" target = "_self">Ascending</a></td>
+<td><a href = "/cs480/BookmarkController/${userId}/${category}/Descending" target = "_self">Descending</a></td>
+<td><a href = "/cs480/BookmarkController/${userId}/${category}/Oldest" target = "_self">Oldest</a></td>
+<td><a href = "/cs480/BookmarkController/${userId}/${category}/Newest" target = "_self">Newest</a></td>
 </nav>
 
 
