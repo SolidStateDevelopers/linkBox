@@ -33,7 +33,7 @@ the category table*/
     vertical-align: top;
 }
 
-#sexybuttons {
+button#sexybuttons {
     background-color: white;
 }
 
@@ -63,4 +63,14 @@ a:hover#categoryLink {
 .dragover tbody{
     border-style: solid;
     border-color: black;
+}
+
+table.categoryTable {
+    min-width: 25%;
+    margin: 5px;
+}
+
+table.linkTable {
+    min-width: 25%;
+    margin: 5px;
 }

@@ -59,7 +59,7 @@ Sort By: <br>
 
         
         <div>
-            <label id="categoryName">${category} links</label>
+            <label id="categoryName">${category}</label>
         </div>
         <div>
             <#list bookmarks as data>
