@@ -38,12 +38,12 @@ header {
                 <#list bookmarks as data>
                     <table class="categoryTable" style="display: inline-block;">
                         <tr>
-                            <td colspan = '2'><a id='categoryLink' href="/cs480/BookmarkController/${data.id}/${data.category}">${data.category}</a></td>
-                            <td></td> 
+                            <td colspan='2' align="center"><a id='categoryLink' href="/cs480/BookmarkController/${data.id}/${data.category}">${data.category}</a></td>
+                            
                         </tr>
                         <tr>
-                            <td colspan = '2'><button id = 'sexybuttons' onclick="addBookmark('${data.category}')">Add Link</button></td>
-                            <td colspan = '3'><button id = 'sexybuttons' style="background-color: palevioletred" onclick ="deleteCategory('${data.category}')">Remove Folder</button></td> 
+                            <td><button id = 'sexybuttons' onclick="addBookmark('${data.category}')">Add Link</button></td>
+                            <td><button id = 'trashButton' onclick ="deleteCategory('${data.category}')">Remove Folder</button></td> 
                         </tr>
                     </table>
                 </#list> 

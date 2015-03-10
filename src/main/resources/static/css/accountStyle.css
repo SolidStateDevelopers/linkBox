@@ -33,8 +33,32 @@ the category table*/
     vertical-align: top;
 }
 
+button#trashButton {
+    background-color: palevioletred;
+    border: none;
+}
+
+button:hover#trashButton {
+    background-color: buttonshadow;
+}
+
 button#sexybuttons {
     background-color: white;
+    border: none;
+}
+
+button:hover#sexybuttons {
+    background-color: buttonshadow;
+} 
+
+button#headerbutton {
+    background-color: white;
+    border: none;
+    float: left;
+}
+
+button:hover#headerbutton {
+    background-color: buttonshadow;
 }
 
 a#logout {
@@ -50,14 +74,16 @@ a:hover#logout {
 a#categoryLink {
     text-decoration: none;
     color: white;
-    font-size: large;
+    font-size: larger;
 }
 
 a:hover#categoryLink {
     color: black;
 }
 
-.categoryTable table:hover {
+table.categoryTable {
+    border: solid;
+    border-color: buttonface;
 }
 
 .dragover tbody{

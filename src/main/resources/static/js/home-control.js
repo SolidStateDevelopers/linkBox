@@ -141,12 +141,16 @@ function deleteCategory(folder) {
 
 function addBookmark(presentCategory) {
     var category, bookmark;
+    if($('#input_bookmark').val()){
+        bookmark = $('#input_bookmark').val();
+    } else {
+        bookmark = window.prompt("copy or type url here");
+    }
     if(presentCategory){
         category = presentCategory;
-        bookmark = window.prompt("copy or type url here");
     } else {
+        
         category = $('#input_category').val();
-        bookmark = $('#input_bookmark').val();
     }
     
 	

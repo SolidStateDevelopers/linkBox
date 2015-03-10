@@ -40,9 +40,8 @@ footer {
     <div id = "target">
 
 <header>
+<button id="headerbutton" onclick = "goToHome()">Back To Home</button>
 <h1>${category} Bookmark Page</h1>
- <td><button onclick ="deleteLink()">Delete Link</button></td>
- <td><button onclick = "goToHome()">Back To Home</button></td>
 </header>
 
 <nav>
@@ -68,7 +67,7 @@ Sort By: <br>
                         <td><a id="categoryLink" href = "http://${data.bookmark}">${data.bookmark}</a></td> 
                     </tr>
                     <tr>
-                        <td><button onclick ="deleteLink('${data.bookmark}')">Remove</button></td> 
+                        <td><button id="sexybuttons" onclick ="deleteLink('${data.bookmark}')">Remove</button></td> 
                     </tr>
                 </table>
             </#list>
@@ -80,14 +79,12 @@ Sort By: <br>
             <label>Add URL </label>
             <table border="1" align = "center">
                 <tr>
-                    <td>Category</td>
                     <td>URL</td>                     
                     <td>Add</td>
                 </tr>                
-                <tr>
-                    <td><input type="text" id="input_category"></td>  
+                <tr> 
                     <td><input type="text" id="input_bookmark"></td> 
-                    <td><button onclick="addBookmark()">Add</button></td>
+                    <td><button onclick="addBookmark('${category}')">Add</button></td>
                 </tr>
             </table>
         </div>
