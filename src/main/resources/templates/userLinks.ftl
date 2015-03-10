@@ -90,6 +90,25 @@ Sort By: <br>
             </table>
         </div>
 
+        
+        <hr>
+        
+        <div>
+            <label id="categoryName">${category}</label>
+        </div>
+        <div>
+            <#list bookmarks as data>
+                    <table class="linkTable" style="display: inline-block;">
+                    <tr>
+                        <td><a id="categoryLink" href = "http://${data.bookmark}">${data.bookmark}</a></td> 
+                    </tr>
+                    <tr>
+                        <td colspan = '3'><button id = 'sexybuttons' style="background-color: palevioletred" button onclick ="deleteLink('${data.bookmark}')">Remove</button></td> 
+                    </tr>
+                </table>
+            </#list>
+        </div>
+
         <hr>
 
     </div>
