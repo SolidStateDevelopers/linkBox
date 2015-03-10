@@ -41,8 +41,7 @@ footer {
 
 <header>
 <h1>${category} Bookmark Page</h1>
- <td><button onclick ="deleteLink()">Delete Link</button></td>
- <td><button onclick = "goToHome()">Back To Home</button></td>
+ <td colspan = '2'><button id = 'sexybuttons' onclick = "goToHome()">Back To Home</button></td>
 </header>
 
 <nav>
@@ -56,26 +55,6 @@ Sort By: <br>
 
 <section>
    <div>
-
-        
-        <div>
-            <label id="categoryName">${category}</label>
-        </div>
-        <div>
-            <#list bookmarks as data>
-                <table class="linkTable" style="display: inline-block;">
-                    <tr>
-                        <td><a id="categoryLink" href = "http://${data.bookmark}">${data.bookmark}</a></td> 
-                    </tr>
-                    <tr>
-                        <td><button onclick ="deleteLink('${data.bookmark}')">Remove</button></td> 
-                    </tr>
-                </table>
-            </#list>
-        </div>
-        
-        <hr>
-
         <div>
             <label>Add URL </label>
             <table border="1" align = "center">
@@ -90,6 +69,24 @@ Sort By: <br>
                     <td><button onclick="addBookmark()">Add</button></td>
                 </tr>
             </table>
+        </div>
+        
+        <hr>
+
+        <div>
+            <label id="categoryName">${category}</label>
+        </div>
+        <div>
+            <#list bookmarks as data>
+                <table class="linkTable" style="display: inline-block;">
+                    <tr>
+                        <td><a id="categoryLink" href = "http://${data.bookmark}">${data.bookmark}</a></td> 
+                    </tr>
+                    <tr>
+                        <td colspan = '3'><button id = 'sexybuttons' style="background-color: palevioletred" button onclick ="deleteLink('${data.bookmark}')">Remove</button></td> 
+                    </tr>
+                </table>
+            </#list>
         </div>
 
         <hr>

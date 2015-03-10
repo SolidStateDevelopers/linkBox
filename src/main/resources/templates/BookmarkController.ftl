@@ -43,7 +43,7 @@ header {
                         </tr>
                         <tr>
                             <td colspan = '2'><button id = 'sexybuttons' onclick="addBookmark('${data.category}')">Add Link</button></td>
-                            <td colspan = '3'><button id = 'sexybuttons' style="background-color: palevioletred" onclick ="deleteCategory('${data.category}')">Remove Folder</button></td> 
+                            <td colspan = '3'><button id = 'sexybuttons' style="background-color: palevioletred" onclick ="deleteCategory('${data.category}')">Remove </button></td> 
                         </tr>
                     </table>
                 </#list> 
