@@ -57,7 +57,7 @@ Sort By: <br>
 <section>
    <div>
 
-        <div>
+        <div class="centered">
             <label>Add URL </label>
             <table border="1" align = "center">
                 <tr>
@@ -74,7 +74,7 @@ Sort By: <br>
         
         <hr>
         
-        <div>
+        <div class="centered" class="largeLable">
             <label id="categoryName">${category}</label>
         </div>
         <div>

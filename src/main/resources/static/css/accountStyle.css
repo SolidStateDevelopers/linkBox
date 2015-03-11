@@ -100,3 +100,11 @@ table.linkTable {
     min-width: 25%;
     margin: 5px;
 }
+
+.centered {
+    text-align: center;
+}
+
+label {
+    font-size: x-large;
+}

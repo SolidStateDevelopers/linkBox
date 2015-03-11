@@ -26,13 +26,11 @@ header {
 
 </header>
 
-<hr>
-
         <div>
 
             <div>
 
-               <div>
+               <div class="centered">
                   <label>Bookmark Lists</label>
                </div>
                 <#list bookmarks as data>
@@ -50,7 +48,7 @@ header {
             </div>
 <hr> 
 
-            <div>
+            <div class="centered">
                 <label>Add Category and URL</label>
                 <table border="1" align = "center">
                     <tr>
