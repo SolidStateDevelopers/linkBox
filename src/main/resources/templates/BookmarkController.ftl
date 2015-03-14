@@ -28,26 +28,6 @@ header {
 
         <div>
 
-            <div>
-
-               <div class="centered">
-                  <label>Bookmark Lists</label>
-               </div>
-                <#list bookmarks as data>
-                    <table class="categoryTable" style="display: inline-block;">
-                        <tr>
-                            <td colspan='2' align="center"><a id='categoryLink' href="/cs480/BookmarkController/${data.id}/${data.category}">${data.category}</a></td>
-                            
-                        </tr>
-                        <tr>
-                            <td><button id = 'sexybuttons' onclick="addBookmark('${data.category}')">Add Link</button></td>
-                            <td><button id = 'trashButton' onclick ="deleteCategory('${data.category}')">Remove Folder</button></td> 
-                        </tr>
-                    </table>
-                </#list> 
-            </div>
-<hr> 
-
             <div class="centered">
                 <label>Add Category and URL</label>
                 <table border="1" align = "center">
@@ -62,6 +42,27 @@ header {
                         <td><button onclick="addBookmark()">Add</button></td>
                     </tr>
                 </table>
+            </div>
+
+
+<hr> 
+            <div>
+
+               <div class="centered">
+                  <label>Categories</label>
+               </div>
+                <#list bookmarks as data>
+                    <table class="categoryTable" style="display: inline-block;">
+                        <tr>
+                            <td colspan='2' align="center"><a id='categoryLink' href="/cs480/BookmarkController/${data.id}/${data.category}">${data.category}</a></td>
+                            
+                        </tr>
+                        <tr>
+                            <td><button id = 'sexybuttons' onclick="addBookmark('${data.category}')">Add Link</button></td>
+                            <td><button id = 'trashButton' onclick ="deleteCategory('${data.category}')">Remove Folder</button></td> 
+                        </tr>
+                    </table>
+                </#list> 
             </div>
 <hr>
         </div>
